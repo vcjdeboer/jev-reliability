@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ask It Again</title>
-<meta name="description" content="Jev doesn't always give the same answer to the same question. We ran 1,252 calls to find out what actually moves it, and packaged the tests as a swamp extension.">
+<meta name="description" content="An engineering note: we checked how repeatable Jev is, modelled what moved the answer, found the model was wrong, and ended up with one thing worth keeping.">
 <meta name="author" content="Claude Opus 5, on behalf of Vincent de Boer">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Ask It Again">
-<meta property="og:description" content="Jev doesn't always give the same answer to the same question. We ran 1,252 calls to find out what actually moves it, and packaged the tests as a swamp extension.">
+<meta property="og:description" content="An engineering note on how repeatable Jev is — what we replicated, what surprised us, what didn't hold up, and the one check worth adding.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -102,11 +102,11 @@
 
 <div class="wrap">
   <header class="hero">
-    <p class="eyebrow">Notes · 2026</p>
+    <p class="eyebrow">Engineering note · 2026</p>
     <h1>Ask It Again</h1>
-    <p class="standfirst">Jev doesn't always give the same answer to the same question.
-      We ran 1,252 calls to find out what actually moves it, and packaged the tests as a
-      swamp extension so they can be pointed at any question.</p>
+    <p class="standfirst">We checked how repeatable Jev is, built a model to explain what
+      moved the answer, found the model was wrong, and came away with one check worth
+      adding to anything built on it.</p>
     <p class="byline">Written by Claude Opus 5, on behalf of Vincent de Boer · September 2026</p>
   </header>
 
@@ -121,14 +121,13 @@
     running 1,680 pharmacy decisions through it under chaos
     testing.<sup><a href="#fn2" id="fnref2">2</a></sup> TLA<sup>+</sup> is a language for
     writing down precisely how a system is allowed to behave, so a checker can walk every
-    reachable state and find the ones that break your rules — a proof that the design
-    holds, before any code exists.</p>
+    reachable state and find the ones that break your rules.</p>
 
-  <p>One line in the article stuck with us: the same request, sent five times, came back
-    0.03, 0.03, 0.03, 0.04, 0.04.</p>
+  <p>One line in it stuck with us: the same request, sent five times, came back 0.03,
+    0.03, 0.03, 0.04, 0.04.</p>
 
   <p>So the model doesn't always give the same answer to the same question. We wanted to
-    know how much that matters, and what else moves the answer besides chance.</p>
+    know how much that matters for something we'd already shipped.</p>
 
   <h2>What Jev is</h2>
 
@@ -137,95 +136,44 @@
     gives back a number instead of prose.<sup><a href="#fn1" id="fnref1">1</a></sup></p>
 
   <p>Ask it <em>does this customer sound angry?</em> and you get <code>0.9</code>. Not a
-    paragraph about the customer sounding angry — the probability itself. It is trained
-    for calibrated decisions rather than for replies people like, and it answers in three
-    shapes: a yes/no probability, a choice among options you define, or a score across
-    ordered levels.</p>
-
-  <p>That makes it something code can use directly. A chat model asked the same thing
-    replies "You're absolutely right, this customer does sound very angry — shall I draft
-    a response?", which breaks a program expecting a number. Jev fits where software
+    paragraph about the customer sounding angry — the probability itself. It answers in
+    three shapes: a yes/no probability, a choice among options you define, or a score
+    across ordered levels. That makes it something code can use directly, where software
     branches on a judgment: route this, escalate that, hold this one back.</p>
 
   <h2>What we did</h2>
 
   <p>The question we studied came from
     <a href="https://github.com/vcjdeboer/jev-voice">jev-voice</a>, an extension we'd
-    already built on Jev. It profiles a piece of writing along six dimensions — formality,
-    authority, complexity, warmth, pace and conviction — and for each one returns not a
-    label but the full spread across the levels, so a text that sits 60% formal and 40%
-    conversational is reported as exactly that rather than rounded to the nearest verdict.
-    Having shipped it, we wanted to know how much those numbers could be trusted.</p>
+    already built on Jev. It profiles writing along six dimensions — formality, authority,
+    complexity, warmth, pace and conviction — and for each returns the full spread across
+    the levels rather than a single label, so a text sitting 60% formal and 40%
+    conversational is reported as that instead of rounded to a verdict.</p>
 
-  <p>So we took one of its six questions — <em>how formal is this writing?</em>, answered
-    on a four-level scale — and wrote thirty short texts to ask it about. Eight obviously
-    casual, eight obviously formal, and fourteen deliberately in between, the kind where
-    two people would reasonably disagree.</p>
+  <p>We took one of those six — <em>how formal is this writing?</em>, on a four-level
+    scale — and wrote thirty short texts. Eight obviously casual, eight obviously formal,
+    fourteen deliberately in between.</p>
 
-  <p>Then we asked Jev about every text under eight different versions of the same
-    request, twice each. Four of those versions changed something that <em>cannot</em>
-    change the right answer — trailing whitespace on the instructions, an extra field in
-    the request that nothing reads, the fields in a different order. The other four
-    reworded the question itself, keeping the meaning but changing the sentences.</p>
+  <p>Each text went through eight versions of the same request, twice each. Four versions
+    changed something that cannot change the right answer: trailing whitespace, an extra
+    field nothing reads, the fields in a different order. The other four reworded the
+    question while keeping its meaning. Alongside that we ran a yes/no gate question on
+    eight messages, and twenty texts where half weren't writing at all — a bare number, a
+    URL, a base64 blob.</p>
 
-  <p>That gives four things that can differ between any two calls:</p>
+  <p>1,252 calls, one pinned model version so an update mid-study couldn't be mistaken for
+    noise.</p>
 
-  <table>
-    <thead><tr><th>What differs</th><th>Example</th></tr></thead>
-    <tbody>
-      <tr><td>nothing at all</td><td>the identical request, sent again</td></tr>
-      <tr><td>something that can't matter</td><td>trailing whitespace; an unused extra field</td></tr>
-      <tr><td>the wording</td><td>the same question asked a different way</td></tr>
-      <tr><td>the text being judged</td><td>a chat message versus a legal clause</td></tr>
-    </tbody>
-  </table>
+  <h2>What we replicated</h2>
 
-  <p>The last one is the signal — it's what you're paying the model to notice. The first
-    three are all ways of being wrong.</p>
+  <p>Most of what we measured was already public, and came out the same way.</p>
 
-  <p>Alongside that we ran two smaller sets: a yes/no gate question (<em>does this message
-    need a human today?</em>) on eight messages, to see what happens to an actual
-    decision rather than a score; and twenty texts where half weren't writing at all — a
-    bare number, a URL, a base64 blob — to see what the model does when there is nothing
-    to judge.</p>
+  <p>Byte-identical requests don't always give byte-identical answers — but only in the
+    middle. Texts at either end of the scale returned the same answer twenty times out of
+    twenty. The in-between ones returned up to sixteen different answers in twenty calls.</p>
 
-  <p>1,252 calls in total, all against one pinned model version, so an update mid-study
-    couldn't be mistaken for noise.</p>
-
-  <h2>Pulling the numbers apart</h2>
-
-  <p>Repeating a question tells you the answer wobbles. It doesn't tell you which of those
-    four things caused the wobble, because in the raw data they're all tangled together.</p>
-
-  <p>So we fitted a <strong>multilevel model</strong>. The idea is that every answer is the
-    sum of a few hidden contributions — one for this text, one for this wording, one for
-    this particular call — and if you have enough answers you can work backwards and
-    estimate how big each contribution is. Fourteen texts times eight wordings times two
-    repeats gives enough overlap to separate them.</p>
-
-  <p>We did it the <strong>Bayesian</strong> way, which mainly means the answer comes out
-    as a range instead of a single number. Rather than "rewording contributes 0.035", you
-    get "somewhere between 0.016 and 0.036, most likely around 0.025". That matters here,
-    because the whole question is whether one contribution is genuinely bigger than
-    another, and two ranges that overlap heavily aren't telling you that.</p>
-
-  <p>We also checked the model against itself, which is worth explaining because it's what
-    changed our conclusion. Once fitted, a model can generate fake data. If that fake data
-    doesn't look like the real data, the model is wrong about something, however
-    confident its numbers look. We ran that check every time.</p>
-
-  <h2>What came out</h2>
-
-  <h3>It repeats itself, except in the middle</h3>
-
-  <p>Sending byte-identical requests twenty times, the obviously-casual and
-    obviously-formal texts came back with the same answer every time. The in-between texts
-    came back with up to sixteen different answers in twenty calls.</p>
-
-  <p>Had we used only clear-cut examples, we'd have measured perfect repeatability and
-    learned nothing.</p>
-
-  <h3>Three sizes of movement</h3>
+  <p>And the three things that can differ between two calls come out in a consistent
+    order:</p>
 
   <table>
     <thead><tr><th>What changed between calls</th><th class="num">movement (sd, 0–3 scale)</th></tr></thead>
@@ -236,96 +184,103 @@
     </tbody>
   </table>
 
-  <p>Rewording moves the answer most. The middle row is the one we didn't expect: adding a
-    field nothing reads moves the answer about twice as much as just asking again.</p>
+  <p>Published numbers for the same model version are ordered the same way, at a ratio of
+    1.74 where we got 1.70.<sup><a href="#fn2">2</a></sup> That's a replication, not a
+    discovery, and we'd rather say so than dress it up.</p>
 
-  <h3>A lot of texts get exactly the same number</h3>
+  <h2>Two things we didn't expect</h2>
 
-  <p>Of the thirty texts, thirteen came back with exactly identical values — six at the
-    bottom of the scale, seven at the top. Sort that list and the order within those two
-    blocks is arbitrary. Allowing for noise, 17% of all pairs were too close to separate.</p>
+  <p><strong>An unused field isn't free.</strong> Adding a field to the request that
+    nothing reads moves the answer about twice as much as simply sending the same request
+    again. Nothing in a request is inert, including the parts that aren't part of the
+    question.</p>
 
-  <h3>A threshold can flip without anything changing</h3>
+  <p><strong>A lot of texts get exactly the same number.</strong> Of thirty texts,
+    thirteen came back with <em>identical</em> values — six at the bottom of the scale,
+    seven at the top. Not close; equal. Sort that list and the order inside those two
+    blocks is invented. Allowing for movement, 17% of all pairs were too close to
+    separate.</p>
 
-  <p>One text came back with confidence between 0.46 and 0.53 across repeated identical
-    requests. A gate written <code>confidence &gt;= 0.5</code> lands on both sides of that
-    from one run to the next.</p>
+  <p>The second one matters more than it sounds. A score with four levels has less
+    resolution than the decimals suggest, and anything that mines those decimals — a
+    ranking, a threshold sitting at a cut point — is reading detail that isn't there. One
+    text came back with confidence between 0.46 and 0.53 across identical requests, so a
+    gate written <code>confidence &gt;= 0.5</code> lands on both sides of it between runs.</p>
 
-  <p>The answer itself held up better — the top choice almost never moved. On the yes/no
-    gate we measured how often the decision changed:</p>
+  <h2>The model we built, and why we dropped it</h2>
 
-  <table>
-    <thead><tr><th>Condition</th><th class="num">Decisions that change</th></tr></thead>
-    <tbody>
-      <tr><td>same request, repeated</td><td class="num">0.0%</td></tr>
-      <tr><td>question reworded</td><td class="num">12.5%</td></tr>
-    </tbody>
-  </table>
+  <p>Raw numbers can't tell you which of those causes did what, because in the data
+    they're tangled together. So we fitted a model: treat every answer as the sum of a few
+    hidden contributions — one for this text, one for this wording, one for this call —
+    and work backwards from 1,252 answers to size each one.</p>
 
-  <h3>It rates things that have nothing to rate</h3>
+  <p>We fitted it so that each contribution comes out as a range rather than a single
+    number. That turned out to be the only part that mattered, for reasons that became
+    clear later.</p>
 
-  <p>We asked how formal the single word <code>yes</code> is. The model came back
-    <strong>98% confident</strong> that it was maximally casual writing. We then asked a
-    second question in the same request — <em>is there enough here to judge at all?</em> —
-    and got <strong>2%</strong>.</p>
+  <p>The model said rewording moved the answer more than the changes that can't matter,
+    and we were ready to write that down. Then we checked it against itself: a fitted
+    model can generate fake data, and if the fake data doesn't resemble the real data,
+    something in the model is wrong. Ours generated data that was consistently more spread
+    out than what we actually measured.</p>
 
-  <p>Across the twenty mixed texts, that second question separated real prose from
-    non-writing completely, and confidence did not. A list of mathematical constants came
-    back rated more formal than a release note.</p>
+  <p>The cause was an assumption we hadn't noticed making — that every text reacts to
+    rewording by about the same amount. Two of the fourteen in-between texts move by
+    around 0.37 when reworded; the other twelve move by about 0.09. Forced to use one
+    number for all of them, the model had split the difference.</p>
 
-  <h2>Where it ended up</h2>
-
-  <p>Our first model assumed every text reacts to rewording by roughly the same amount.
-    On that assumption, rewording clearly mattered more than the changes that can't
-    matter, and we were ready to say so.</p>
-
-  <p>Then the self-check failed. Fake data generated from the fitted model was
-    consistently more spread out than the real data — the model expected typical texts to
-    move around more than they actually did.</p>
-
-  <p>The reason turned out to be that the assumption was wrong. Two of the fourteen
-    in-between texts are far more sensitive to rewording than the other twelve: their
-    answers move by around 0.37 where the rest move by 0.09. Forced to use one number for
-    everyone, the model split the difference, and overstated the typical case to
-    accommodate the two extremes.</p>
-
-  <p>So we refitted allowing a few texts to be much more sensitive than the rest — a
-    <strong>Student-t</strong> shape rather than a bell curve. A bell curve says extremes
-    are rare; a Student-t says most things sit near the middle but genuine outliers turn
-    up far more often than a bell curve would allow. That version passed the self-check.</p>
+  <p>Refitting to allow a few texts to be much more sensitive than the rest fixed the
+    check. And under that version, the range for the rewording effect reaches down to
+    zero — so the finding we'd been about to publish doesn't survive its own follow-up.
+    Had we reported a single number instead of a range, we would never have seen it.</p>
 
   <table>
-    <thead><tr><th>Assumption</th><th class="num">Passes self-check</th><th class="num">Rewording effect</th></tr></thead>
+    <thead><tr><th>Assumption</th><th class="num">Fits the data</th><th class="num">Rewording effect</th></tr></thead>
     <tbody>
       <tr><td>all texts equally sensitive</td><td class="num">no</td><td class="num">0.0022 [0.0007, 0.0041]</td></tr>
       <tr><td>a few far more sensitive</td><td class="num">yes</td><td class="num">0.0004 [0.0000, 0.0011]</td></tr>
     </tbody>
   </table>
 
-  <p>Under the model that fits, the range for the rewording effect reaches down to zero.
-    So the conclusion we'd been heading for — <em>rewording a question systematically
-    moves Jev's answers</em> — doesn't survive. For most texts, rewording does about as
-    much as adding a stray whitespace character.</p>
+  <p>What we were left with is that sensitivity to rewording belongs to particular
+    questions rather than to the model — which, written down plainly, is close to obvious.
+    Some texts are borderline and some aren't; the borderline ones move. We spent a fair
+    amount of modelling to arrive at something you'd have guessed, and it rests on two
+    texts out of fourteen. We're reporting it, not leaning on it.</p>
 
-  <p><strong>What replaces it is more useful.</strong> Rewording isn't a general tax on
-    accuracy, it's a property of specific questions and specific inputs. A handful are
-    very sensitive; the rest barely notice. That means an average "noise floor" for a
-    model is the wrong thing to ask for — the number you want is which of <em>your</em>
-    questions are the fragile ones. Two out of fourteen, here, and you cannot tell which
-    by reading them.</p>
+  <h2>The one thing worth taking away</h2>
 
-  <p>For what it's worth, published noise floors for the same model version come out in
-    the same order we measured — repeating, then changing something irrelevant, then
-    rewording — at a ratio of 1.74 against our 1.70.<sup><a href="#fn2">2</a></sup></p>
+  <p>We asked how formal the single word <code>yes</code> is. The model came back
+    <strong>98% confident</strong> that it was maximally casual writing.</p>
 
-  <p>None of this says anything about whether Jev is <em>right</em>. Everything here is
-    about whether it's consistent. That's a separate question and it needs labelled
-    examples.</p>
+  <p>Then we added a second question to the same request — <em>is there enough here to
+    judge at all?</em> — and got <strong>2%</strong>.</p>
 
-  <h2>The tests, as a tool</h2>
+  <p>Across the twenty mixed texts, that second question told real prose from
+    non-writing every time. Confidence did not: a list of mathematical constants came
+    back rated more formal than a release note, with nothing in the confidence score to
+    suggest anything was wrong. The two questions aren't measuring the same thing.
+    Confidence asks whether the level is settled. The second asks whether there's anything
+    to settle, and no amount of watching the first will tell you the second.</p>
 
-  <p>We packaged the whole thing as a swamp extension, so it can be pointed at the next
-    question instead of rebuilt.</p>
+  <p>Both of the projects we read hit this from different directions and neither closed
+    it. It costs one extra question in a request you're already making. If you take one
+    thing from this note, take that.</p>
+
+  <h2>Why there's an extension</h2>
+
+  <p>One of our four changes-that-can't-matter was supposed to reorder the fields of the
+    request. The code sorted them and then reversed them, which for a two-field object
+    returns the original order. For 480 calls it was quietly just sending the same request
+    again, and we had read that code several times without seeing it.</p>
+
+  <p>It produced a wrong conclusion — that irrelevant changes don't matter at all — which
+    we believed until the tooling caught it by hashing every request and noticing two were
+    identical. Fixing it doubled that middle row in the table above.</p>
+
+  <p>That's the argument for packaging this rather than doing it by hand: the errors are
+    the kind that survive reading. And since sensitivity turned out to belong to specific
+    questions, it has to be redone per question rather than looked up once per model.</p>
 
   <pre><code>swamp extension pull @vcjdeboer/jev-reliability
 
@@ -334,19 +289,15 @@ swamp model method run @vcjdeboer/jev-reliability check myquestion \
 
 swamp report get @vcjdeboer/jev-reliability-report --model myquestion</code></pre>
 
-  <p>You give it a question and some examples. It tells you how often the decision
-    changes, which items came back tied, whether your threshold sits somewhere unstable,
-    whether the text supports an answer at all, and which of the four sources the movement
-    is coming from. If the model fit hasn't settled, it says so instead of printing
-    numbers.</p>
+  <p>You give it a question and some examples. It reports how often the decision changes,
+    which items came back tied, whether your threshold sits somewhere unstable, whether
+    the text supports an answer at all, and where the movement is coming from. If the
+    model fit hasn't settled it says so rather than printing numbers.</p>
 
-  <p>It also hashes every request and refuses to count two that turned out identical. That
-    check earned itself immediately: one of our supposed changes-that-can't-matter was
-    reordering two fields that were already in that order, so for 480 calls it was
-    secretly just asking the same question again. We'd read the code several times without
-    seeing it.</p>
+  <p>None of this says whether Jev is <em>right</em> — only whether it's consistent.
+    That's a different question and it needs labelled examples.</p>
 
-  <p>The code, the raw data and the full write-up are in the
+  <p>Code, raw data and the full write-up are in the
     repository.<sup><a href="#fn3" id="fnref3">3</a></sup></p>
 
   <div class="hr-mark" aria-hidden="true">
