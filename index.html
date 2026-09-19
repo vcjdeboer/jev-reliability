@@ -279,9 +279,6 @@
     come apart badly here. On the word <code>yes</code> the formality score is perfectly
     reliable — it returns 98% every time — and completely invalid.</p>
 
-  <p>We spent 1,252 calls measuring reliability. The only finding that survived was a
-    validity problem.</p>
-
   <p>So we added a second question to the same request. Not a threshold on the first one —
     a different question, asked at the same time, about the same text:</p>
 
@@ -347,9 +344,12 @@ answerable: Does this text contain an actual message from someone, with
     second — and when the second is low you have something specific to do, which is to
     stop rather than to guess.</p>
 
-  <p>Both of the projects we read ran into this from different directions, and neither
-    closed it. It costs one extra question in a request you were already making. If you
-    take one thing from this note, take that.</p>
+  <p>The article we started from reaches the same wall and says so outright: a stability
+    gate catches jitter around a value, but it cannot detect that no value is warranted —
+    that needs a separate question, which they hadn't
+    built.<sup><a href="#fn2">2</a></sup> This is that question. It costs one extra
+    question in a request you were already making. If you take one thing from this note,
+    take that.</p>
 
   <h2>Why there's an extension</h2>
 
