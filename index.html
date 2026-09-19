@@ -258,21 +258,87 @@
   <h2>The one thing worth taking away</h2>
 
   <p>We asked how formal the single word <code>yes</code> is. The model came back
-    <strong>98% confident</strong> that it was maximally casual writing.</p>
+    <strong>98% confident</strong> that it was maximally casual writing. Which, read
+    generously, isn't wrong — "yes" is not formal. But there is no writing there to have
+    a register at all, and nothing in the answer says so.</p>
 
-  <p>Then we added a second question to the same request — <em>is there enough here to
-    judge at all?</em> — and got <strong>2%</strong>.</p>
+  <p>This is the failure mode you can't watch for. A wobbling number tells you the model
+    is unsure. A number like this one is rock steady: ask again and you get 98% again. The
+    model isn't uncertain, it's answering a question that doesn't apply.</p>
 
-  <p>Across the twenty mixed texts, that second question told real prose from
-    non-writing every time. Confidence did not: a list of mathematical constants came
-    back rated more formal than a release note, with nothing in the confidence score to
-    suggest anything was wrong. The two questions aren't measuring the same thing.
-    Confidence asks whether the level is settled. The second asks whether there's anything
-    to settle, and no amount of watching the first will tell you the second.</p>
+  <p>So we added a second question to the same request. Not a threshold on the first one —
+    a different question, asked at the same time, about the same text:</p>
 
-  <p>Both of the projects we read hit this from different directions and neither closed
-    it. It costs one extra question in a request you're already making. If you take one
-    thing from this note, take that.</p>
+  <pre><code>question:  Rate the formality of this writing. Consider word choice,
+           sentence structure, contractions, colloquialisms, and register...
+
+answerable: Does this text contain enough connected writing to support a
+            judgement about its formality? Answer yes only if there is
+            genuine prose present — sentences with word choice, structure
+            and register that can actually be assessed. Answer no if the
+            text is too short to have a register, is not prose at all, or
+            contains no writing to assess.
+
+  yes:  There is real prose here — at least one full sentence whose word
+        choice, structure and register can be assessed.
+  no:   There is nothing to assess: a bare value, an identifier or URL, a
+        single word or fragment, punctuation, encoded data, or a bare list
+        with no sentence.</code></pre>
+
+  <p>On the word <code>yes</code>, that second question returns <strong>2%</strong>.</p>
+
+  <p>We ran it over twenty texts: ten ordinary pieces of prose, and ten things that
+    aren't writing at all — a bare number, a URL, <code>TODO</code>, a run of punctuation,
+    a base64 blob, a list of constants. The second question separated them completely.
+    Every piece of prose scored above 0.93; everything that wasn't writing scored below
+    0.31. Confidence didn't come close to that, and the mistakes it made went in both
+    directions:</p>
+
+  <table>
+    <thead><tr><th>Text</th><th class="num">Confidence</th><th class="num">Answerable</th></tr></thead>
+    <tbody>
+      <tr><td><code>yes</code></td><td class="num">0.98</td><td class="num">0.02</td></tr>
+      <tr><td>a customer-service reply</td><td class="num">0.50</td><td class="num">0.98</td></tr>
+    </tbody>
+  </table>
+
+  <p>The first row is the dangerous one: high confidence on something unjudgeable, which
+    a confidence gate waves straight through. The second is the expensive one: ordinary
+    prose that a confidence gate would escalate to a human for no reason. One number
+    cannot do both jobs, because they aren't the same job. Confidence asks whether the
+    level is settled. Answerability asks whether there is anything to settle.</p>
+
+  <p>Left unasked, the non-writing didn't get refused — it got rated. A list of
+    mathematical constants came back at <strong>2.40</strong> on the formality scale, more
+    formal than a release note. Downstream, that is just a number in a column.</p>
+
+  <h3>Writing one for your own question</h3>
+
+  <p>The phrasing has to be specific to what you're asking, because "enough to answer"
+    means something different each time. The pattern that worked for us: name what counts
+    as enough, then name the kinds of thing that count as nothing. Here is the same check
+    written for a completely different question — a yes/no gate on whether a message needs
+    a human reply today:</p>
+
+  <pre><code>question:  Does this message require a response from a human today?
+           Answer yes only if delay until tomorrow would cause a real
+           problem for the sender or for the business.
+
+answerable: Does this text contain an actual message from someone, with
+            enough content to judge whether it needs a reply?
+
+  yes:  There is a real message here with enough content to assess.
+  no:   There is nothing to assess: a bare value, an identifier, a
+        fragment, or encoded data.</code></pre>
+
+  <p>Both questions go in the same request, so they see exactly the same text and cost one
+    call rather than two. Then the answer you act on is the first number, gated on the
+    second — and when the second is low you have something specific to do, which is to
+    stop rather than to guess.</p>
+
+  <p>Both of the projects we read ran into this from different directions, and neither
+    closed it. It costs one extra question in a request you were already making. If you
+    take one thing from this note, take that.</p>
 
   <h2>Why there's an extension</h2>
 
