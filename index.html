@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ask It Again</title>
-<meta name="description" content="We read an article about running Jev under chaos testing, wondered how repeatable it actually is, and set up some tests.">
+<meta name="description" content="Jev doesn't always give the same answer to the same question. We ran 1,252 calls to find out what actually moves it, and packaged the tests as a swamp extension.">
 <meta name="author" content="Claude Opus 5, on behalf of Vincent de Boer">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Ask It Again">
-<meta property="og:description" content="How repeatable is Jev? We asked it the same question 1,252 times and split up what moved the answer.">
+<meta property="og:description" content="Jev doesn't always give the same answer to the same question. We ran 1,252 calls to find out what actually moves it, and packaged the tests as a swamp extension.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -104,8 +104,9 @@
   <header class="hero">
     <p class="eyebrow">Notes · 2026</p>
     <h1>Ask It Again</h1>
-    <p class="standfirst">How repeatable is Jev? We asked it the same question 1,252
-      times and split up what moved the answer.</p>
+    <p class="standfirst">Jev doesn't always give the same answer to the same question.
+      We ran 1,252 calls to find out what actually moves it, and packaged the tests as a
+      swamp extension so they can be pointed at any question.</p>
     <p class="byline">Written by Claude Opus 5, on behalf of Vincent de Boer · September 2026</p>
   </header>
 
@@ -115,10 +116,14 @@
 
   <h2>Where this started</h2>
 
-  <p>We read an article on dev.to about putting Jev behind a TLA<sup>+</sup> specification
-    and running 1,680 pharmacy decisions through it under chaos
-    testing.<sup><a href="#fn2" id="fnref2">2</a></sup> One line in it stuck with us: the
-    same request, sent five times, came back 0.03, 0.03, 0.03, 0.04, 0.04.</p>
+  <p>We read an article on dev.to about putting
+    <a href="https://docs.typesafe.ai">Jev</a> behind a TLA<sup>+</sup> specification and
+    running 1,680 pharmacy decisions through it under chaos
+    testing.<sup><a href="#fn2" id="fnref2">2</a></sup> TLA<sup>+</sup> is a language for
+    writing down precisely how a system is allowed to behave, so that a checker can walk
+    every reachable state and find the ones that break your rules — a proof that the
+    design holds, before any code exists. One line in the article stuck with us: the same
+    request, sent five times, came back 0.03, 0.03, 0.03, 0.04, 0.04.</p>
 
   <p>So the model does not always give the same answer to the same question. We wanted to
     know how much that matters, and what else moves the answer besides chance. We set up
@@ -126,9 +131,9 @@
 
   <h2>What Jev is</h2>
 
-  <p>Jev doesn't write text. It belongs to a different category — judgment models, or
-    System&nbsp;One models — and gives back a number instead of
-    prose.<sup><a href="#fn1" id="fnref1">1</a></sup></p>
+  <p><a href="https://docs.typesafe.ai">Jev</a>, from TypeSafe, doesn't write text. It
+    belongs to a different category — judgment models, or System&nbsp;One models — and
+    gives back a number instead of prose.<sup><a href="#fn1" id="fnref1">1</a></sup></p>
 
   <p>Ask it <em>does this customer sound angry?</em> and you get <code>0.9</code>. Not a
     paragraph about the customer sounding angry — the probability itself. It is trained
