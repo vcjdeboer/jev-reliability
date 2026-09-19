@@ -207,33 +207,28 @@
     blocks is invented. Allowing for movement, 17% of all pairs were too close to
     separate.</p>
 
-  <p>The second one matters more than it sounds. A score with four levels has less
-    resolution than the decimals suggest, and anything that mines those decimals — a
-    ranking, a threshold sitting at a cut point — is reading detail that isn't there. One
-    text came back with confidence between 0.46 and 0.53 across identical requests, so a
-    gate written <code>confidence &gt;= 0.5</code> lands on both sides of it between runs.</p>
+  <p>A four-level score carries less resolution than its decimals suggest, and anything
+    mining those decimals is reading detail that isn't there. One text came back with
+    confidence between 0.46 and 0.53 across identical requests, so a gate written
+    <code>confidence &gt;= 0.5</code> lands on both sides of it between runs.</p>
 
   <h2>The model we built, and why we dropped it</h2>
 
-  <p>Raw numbers can't tell you which of those causes did what, because in the data
-    they're tangled together. So we fitted a model: treat every answer as the sum of a few
-    hidden contributions — one for this text, one for this wording, one for this call —
-    and work backwards from 1,252 answers to size each one.</p>
+  <p>In the raw data the causes are tangled together, so we fitted a model to separate
+    them: treat every answer as the sum of a few hidden contributions — one for this text,
+    one for this wording, one for this call — and work backwards from 1,252 answers to
+    size each. We had it report each contribution as a range rather than a single number,
+    which turned out to be the only part that mattered.</p>
 
-  <p>We fitted it so that each contribution comes out as a range rather than a single
-    number. That turned out to be the only part that mattered, for reasons that became
-    clear later.</p>
+  <p>It said rewording moved the answer more than the changes that can't matter, and we
+    were ready to write that down. Then we checked it against itself — a fitted model can
+    generate fake data, and if the fake data doesn't resemble the real data, something is
+    wrong. Ours produced data more spread out than what we'd actually measured.</p>
 
-  <p>The model said rewording moved the answer more than the changes that can't matter,
-    and we were ready to write that down. Then we checked it against itself: a fitted
-    model can generate fake data, and if the fake data doesn't resemble the real data,
-    something in the model is wrong. Ours generated data that was consistently more spread
-    out than what we actually measured.</p>
-
-  <p>The cause was an assumption we hadn't noticed making — that every text reacts to
+  <p>The culprit was an assumption we hadn't noticed making: that every text reacts to
     rewording by about the same amount. Two of the fourteen in-between texts move by
-    around 0.37 when reworded; the other twelve move by about 0.09. Forced to use one
-    number for all of them, the model had split the difference.</p>
+    around 0.37 when reworded; the other twelve move by about 0.09. Forced into one
+    number, the model had split the difference.</p>
 
   <p>Refitting to allow a few texts to be much more sensitive than the rest fixed the
     check. And under that version, the range for the rewording effect reaches down to
@@ -256,14 +251,36 @@
 
   <h2>The one thing worth taking away</h2>
 
-  <p>We asked how formal the single word <code>yes</code> is. The model came back
-    <strong>98% confident</strong> that it was maximally casual writing. Which, read
-    generously, isn't wrong — "yes" is not formal. But there is no writing there to have
-    a register at all, and nothing in the answer says so.</p>
+  <p>We gave it a text and asked how formal the writing was. The text was the word
+    <code>yes</code>. That's all — three letters, no sentence, nothing with a register.</p>
 
-  <p>This is the failure mode you can't watch for. A wobbling number tells you the model
-    is unsure. A number like this one is rock steady: ask again and you get 98% again. The
-    model isn't uncertain, it's answering a question that doesn't apply.</p>
+  <p>It came back <strong>98% confident</strong>: maximally casual writing.</p>
+
+  <p>Read generously the answer isn't even wrong — "yes" is not formal. But there was
+    nothing there to be formal or informal about, and nothing in the response says so.
+    This is the failure you can't watch for, because it doesn't look like uncertainty. A
+    wobbling number tells you the model is unsure. This number is rock steady: ask again
+    and you get 98% again. The model isn't hesitating. It's confidently answering a
+    question that doesn't apply.</p>
+
+  <p>Put that in a pipeline and it stops being a curiosity. Say you're triaging email and
+    scoring each one for tone before routing it. A reply arrives that reads, in full,
+    <code>yes</code>. It gets a formality score like everything else — a real number, high
+    confidence, no flag — and that number goes into a queue position, a priority, a
+    routing rule. Nowhere in the chain is there anything saying <em>there was no writing
+    in this email</em>. The pipeline can't tell the difference between a score that means
+    something and a score that doesn't, because both arrive as a confident number in the
+    same field.</p>
+
+  <p>Statistics has a name for this shape of mistake: an <strong>error of the third
+    kind</strong> — the right answer to the wrong question. Measurement theory frames it
+    as the difference between <em>reliability</em> and <em>validity</em>: whether a
+    measurement repeats, versus whether it measures the thing you think it measures. Those
+    come apart badly here. On the word <code>yes</code> the formality score is perfectly
+    reliable — it returns 98% every time — and completely invalid.</p>
+
+  <p>We spent 1,252 calls measuring reliability. The only finding that survived was a
+    validity problem.</p>
 
   <p>So we added a second question to the same request. Not a threshold on the first one —
     a different question, asked at the same time, about the same text:</p>
@@ -290,8 +307,7 @@ answerable: Does this text contain enough connected writing to support a
     aren't writing at all — a bare number, a URL, <code>TODO</code>, a run of punctuation,
     a base64 blob, a list of constants. The second question separated them completely.
     Every piece of prose scored above 0.93; everything that wasn't writing scored below
-    0.31. Confidence didn't come close to that, and the mistakes it made went in both
-    directions:</p>
+    0.31. Confidence didn't come close, and its mistakes went both ways:</p>
 
   <table>
     <thead><tr><th>Text</th><th class="num">Confidence</th><th class="num">Answerable</th></tr></thead>
@@ -301,15 +317,11 @@ answerable: Does this text contain enough connected writing to support a
     </tbody>
   </table>
 
-  <p>The first row is the dangerous one: high confidence on something unjudgeable, which
-    a confidence gate waves straight through. The second is the expensive one: ordinary
-    prose that a confidence gate would escalate to a human for no reason. One number
-    cannot do both jobs, because they aren't the same job. Confidence asks whether the
-    level is settled. Answerability asks whether there is anything to settle.</p>
-
-  <p>Left unasked, the non-writing didn't get refused — it got rated. A list of
-    mathematical constants came back at <strong>2.40</strong> on the formality scale, more
-    formal than a release note. Downstream, that is just a number in a column.</p>
+  <p>The first row is the dangerous one — high confidence on something unjudgeable, which
+    a gate waves straight through. The second is the expensive one: ordinary prose a
+    confidence gate would escalate for no reason. Left unasked, the non-writing didn't get
+    refused, it got rated: a list of mathematical constants came back at
+    <strong>2.40</strong>, more formal than a release note.</p>
 
   <h3>Writing one for your own question</h3>
 
@@ -346,13 +358,12 @@ answerable: Does this text contain an actual message from someone, with
     returns the original order. For 480 calls it was quietly just sending the same request
     again, and we had read that code several times without seeing it.</p>
 
-  <p>It produced a wrong conclusion — that irrelevant changes don't matter at all — which
-    we believed until the tooling caught it by hashing every request and noticing two were
-    identical. Fixing it doubled that middle row in the table above.</p>
-
-  <p>That's the argument for packaging this rather than doing it by hand: the errors are
-    the kind that survive reading. And since sensitivity turned out to belong to specific
-    questions, it has to be redone per question rather than looked up once per model.</p>
+  <p>It produced a wrong conclusion — that irrelevant changes don't matter — which we
+    believed until the tooling caught it by hashing every request and noticing two were
+    identical. Fixing it doubled that middle row in the table above. That's the argument
+    for packaging this rather than doing it by hand: these errors survive reading. And
+    since sensitivity belongs to specific questions, it has to be redone per question
+    rather than looked up once per model.</p>
 
   <pre><code>swamp extension pull @vcjdeboer/jev-reliability
 
