@@ -1,0 +1,32 @@
+{
+  "name": "noul-gate",
+  "questionType": "noul",
+  "repeats": 2,
+  "threshold": 0.5,
+  "fitIterations": 60000,
+  "nullFramings": ["identity", "trailing_ws", "key_reorder", "irrelevant_field", "quote_style"],
+  "instructions": "Does this message require a response from a human today? Answer yes only if delay until tomorrow would cause a real problem for the sender or for the business.",
+  "criteriaBool": {
+    "true": "A person must act on this today; waiting until tomorrow causes a real problem.",
+    "false": "This can wait, needs no reply, or is automated noise."
+  },
+  "paraphrases": [
+    "Is same-day human attention actually needed here? Answer yes only where leaving it until the next working day would create a genuine problem for the sender or the business.",
+    "Must a person deal with this message before the end of today? Treat yes as reserved for cases where a delay of one day does real harm; everything else is no."
+  ],
+  "answerability": "Does this text contain an actual message from someone, with enough content to judge whether it needs a reply?",
+  "answerabilityCriteria": {
+    "true": "There is a real message here with enough content to assess.",
+    "false": "There is nothing to assess: a bare value, an identifier, a fragment, or encoded data."
+  },
+  "items": [
+    { "id": "y1", "text": "Production checkout has been failing for about 40 minutes. Customers cannot pay. I have rolled back the deploy but the errors are continuing. Who else can look at this with me right now?" },
+    { "id": "y2", "text": "The auditors arrive tomorrow at 9am and we still do not have the signed access logs for Q3. I need someone with admin rights to export them before close of business." },
+    { "id": "a1", "text": "Following up on my message from last week about the contract renewal. No huge rush but it would be good to get this moving before the end of the month if you have a moment." },
+    { "id": "a2", "text": "Quick question when you get a chance: is the staging database supposed to be reachable from outside the VPN? I noticed it responded to a connection from my home machine earlier." },
+    { "id": "a3", "text": "I think there may be an issue with the invoice totals on the new batch, though I have not checked them all yet. Might be nothing. Let me know if you want me to dig in." },
+    { "id": "n1", "text": "Thanks, that worked perfectly. Really appreciate you turning it around so fast. No reply needed, just wanted to say cheers." },
+    { "id": "n2", "text": "Automated notification: your weekly usage summary is ready. 14,208 requests this week, down 3% from last week. View the full breakdown in the dashboard." },
+    { "id": "n3", "text": "Reminder: the office will be closed on the public holiday next month. Normal hours resume the following day. No action is required from you." }
+  ]
+}

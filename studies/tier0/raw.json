@@ -1,0 +1,1753 @@
+{
+  "id": "5875cbb6-903e-4159-8473-ec79d494a574",
+  "name": "replicate-tier0-determinism",
+  "modelId": "5584b532-c5b3-4432-97d9-e18609e71e23",
+  "modelName": "jev-rel",
+  "modelType": "@vcjdeboer/jev-reliability",
+  "version": 1,
+  "contentType": "application/json",
+  "lifetime": "infinite",
+  "garbageCollection": 100,
+  "streaming": false,
+  "tags": {
+    "type": "resource",
+    "specName": "replicate",
+    "modelName": "jev-rel",
+    "initiatedBy": "user:vcjdeboer"
+  },
+  "ownerDefinition": {
+    "ownerType": "model-method",
+    "ownerRef": "5584b532-c5b3-4432-97d9-e18609e71e23"
+  },
+  "createdAt": "2026-09-19T15:49:25.304Z",
+  "size": 34438,
+  "checksum": "5c33bfd2f7bb60c9c5da1631d6d50d55005c3ae6b27f17f0dac754dc67f749a9",
+  "contentPath": ".swamp/data/@vcjdeboer/jev-reliability/5584b532-c5b3-4432-97d9-e18609e71e23/replicate-tier0-determinism/1/raw",
+  "content": {
+    "run": "tier0-determinism",
+    "collectedAt": "2026-09-19T15:49:25.296Z",
+    "model": "jev-1.13.0",
+    "question": {
+      "instructions": "Rate the formality of this writing. Consider word choice, sentence structure, contractions, colloquialisms, and register. Academic papers and legal text sit at the formal end; blog posts, tweets, and casual chat sit at the informal end. Technical documentation lands in between.",
+      "criteria": [
+        "Casual — contractions, slang, first person, conversational asides, reads like talking to a friend",
+        "Relaxed — readable and approachable, some informality but structured, typical of good blog posts and dev docs",
+        "Professional — clean, structured prose, avoids slang but not stiff, typical of business writing and polished READMEs",
+        "Formal — precise diction, complex sentences, passive voice acceptable, typical of academic papers and official documentation"
+      ]
+    },
+    "design": {
+      "items": 5,
+      "framings": [
+        {
+          "id": "identity",
+          "type": "null"
+        }
+      ],
+      "repeats": 20,
+      "totalCalls": 100
+    },
+    "observations": [
+      {
+        "item": "i1_casual",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 1,
+        "requestHash": "3bae16cfc3837bdf6f6659d347e1f9d7bb1733890ae5875453701c12b10befaa",
+        "score": 0,
+        "confidence": 1,
+        "probabilities": {
+          "0": 1,
+          "1": 0,
+          "2": 0,
+          "3": 0
+        },
+        "probsHash": "814daf0d4c439345f262b7ddc1fcc54e87c01968214e7a35afe70ee9912adfe7",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i1_casual",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 2,
+        "requestHash": "3bae16cfc3837bdf6f6659d347e1f9d7bb1733890ae5875453701c12b10befaa",
+        "score": 0,
+        "confidence": 1,
+        "probabilities": {
+          "0": 1,
+          "1": 0,
+          "2": 0,
+          "3": 0
+        },
+        "probsHash": "814daf0d4c439345f262b7ddc1fcc54e87c01968214e7a35afe70ee9912adfe7",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i1_casual",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 3,
+        "requestHash": "3bae16cfc3837bdf6f6659d347e1f9d7bb1733890ae5875453701c12b10befaa",
+        "score": 0,
+        "confidence": 1,
+        "probabilities": {
+          "0": 1,
+          "1": 0,
+          "2": 0,
+          "3": 0
+        },
+        "probsHash": "814daf0d4c439345f262b7ddc1fcc54e87c01968214e7a35afe70ee9912adfe7",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i1_casual",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 4,
+        "requestHash": "3bae16cfc3837bdf6f6659d347e1f9d7bb1733890ae5875453701c12b10befaa",
+        "score": 0,
+        "confidence": 1,
+        "probabilities": {
+          "0": 1,
+          "1": 0,
+          "2": 0,
+          "3": 0
+        },
+        "probsHash": "814daf0d4c439345f262b7ddc1fcc54e87c01968214e7a35afe70ee9912adfe7",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i1_casual",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 5,
+        "requestHash": "3bae16cfc3837bdf6f6659d347e1f9d7bb1733890ae5875453701c12b10befaa",
+        "score": 0,
+        "confidence": 1,
+        "probabilities": {
+          "0": 1,
+          "1": 0,
+          "2": 0,
+          "3": 0
+        },
+        "probsHash": "814daf0d4c439345f262b7ddc1fcc54e87c01968214e7a35afe70ee9912adfe7",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i1_casual",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 6,
+        "requestHash": "3bae16cfc3837bdf6f6659d347e1f9d7bb1733890ae5875453701c12b10befaa",
+        "score": 0,
+        "confidence": 1,
+        "probabilities": {
+          "0": 1,
+          "1": 0,
+          "2": 0,
+          "3": 0
+        },
+        "probsHash": "814daf0d4c439345f262b7ddc1fcc54e87c01968214e7a35afe70ee9912adfe7",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i1_casual",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 7,
+        "requestHash": "3bae16cfc3837bdf6f6659d347e1f9d7bb1733890ae5875453701c12b10befaa",
+        "score": 0,
+        "confidence": 1,
+        "probabilities": {
+          "0": 1,
+          "1": 0,
+          "2": 0,
+          "3": 0
+        },
+        "probsHash": "814daf0d4c439345f262b7ddc1fcc54e87c01968214e7a35afe70ee9912adfe7",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i1_casual",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 8,
+        "requestHash": "3bae16cfc3837bdf6f6659d347e1f9d7bb1733890ae5875453701c12b10befaa",
+        "score": 0,
+        "confidence": 1,
+        "probabilities": {
+          "0": 1,
+          "1": 0,
+          "2": 0,
+          "3": 0
+        },
+        "probsHash": "814daf0d4c439345f262b7ddc1fcc54e87c01968214e7a35afe70ee9912adfe7",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i1_casual",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 9,
+        "requestHash": "3bae16cfc3837bdf6f6659d347e1f9d7bb1733890ae5875453701c12b10befaa",
+        "score": 0,
+        "confidence": 1,
+        "probabilities": {
+          "0": 1,
+          "1": 0,
+          "2": 0,
+          "3": 0
+        },
+        "probsHash": "814daf0d4c439345f262b7ddc1fcc54e87c01968214e7a35afe70ee9912adfe7",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i1_casual",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 10,
+        "requestHash": "3bae16cfc3837bdf6f6659d347e1f9d7bb1733890ae5875453701c12b10befaa",
+        "score": 0,
+        "confidence": 1,
+        "probabilities": {
+          "0": 1,
+          "1": 0,
+          "2": 0,
+          "3": 0
+        },
+        "probsHash": "814daf0d4c439345f262b7ddc1fcc54e87c01968214e7a35afe70ee9912adfe7",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i1_casual",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 11,
+        "requestHash": "3bae16cfc3837bdf6f6659d347e1f9d7bb1733890ae5875453701c12b10befaa",
+        "score": 0,
+        "confidence": 1,
+        "probabilities": {
+          "0": 1,
+          "1": 0,
+          "2": 0,
+          "3": 0
+        },
+        "probsHash": "814daf0d4c439345f262b7ddc1fcc54e87c01968214e7a35afe70ee9912adfe7",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i1_casual",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 12,
+        "requestHash": "3bae16cfc3837bdf6f6659d347e1f9d7bb1733890ae5875453701c12b10befaa",
+        "score": 0,
+        "confidence": 1,
+        "probabilities": {
+          "0": 1,
+          "1": 0,
+          "2": 0,
+          "3": 0
+        },
+        "probsHash": "814daf0d4c439345f262b7ddc1fcc54e87c01968214e7a35afe70ee9912adfe7",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i1_casual",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 13,
+        "requestHash": "3bae16cfc3837bdf6f6659d347e1f9d7bb1733890ae5875453701c12b10befaa",
+        "score": 0,
+        "confidence": 1,
+        "probabilities": {
+          "0": 1,
+          "1": 0,
+          "2": 0,
+          "3": 0
+        },
+        "probsHash": "814daf0d4c439345f262b7ddc1fcc54e87c01968214e7a35afe70ee9912adfe7",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i1_casual",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 14,
+        "requestHash": "3bae16cfc3837bdf6f6659d347e1f9d7bb1733890ae5875453701c12b10befaa",
+        "score": 0,
+        "confidence": 1,
+        "probabilities": {
+          "0": 1,
+          "1": 0,
+          "2": 0,
+          "3": 0
+        },
+        "probsHash": "814daf0d4c439345f262b7ddc1fcc54e87c01968214e7a35afe70ee9912adfe7",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i1_casual",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 15,
+        "requestHash": "3bae16cfc3837bdf6f6659d347e1f9d7bb1733890ae5875453701c12b10befaa",
+        "score": 0,
+        "confidence": 1,
+        "probabilities": {
+          "0": 1,
+          "1": 0,
+          "2": 0,
+          "3": 0
+        },
+        "probsHash": "814daf0d4c439345f262b7ddc1fcc54e87c01968214e7a35afe70ee9912adfe7",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i1_casual",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 16,
+        "requestHash": "3bae16cfc3837bdf6f6659d347e1f9d7bb1733890ae5875453701c12b10befaa",
+        "score": 0,
+        "confidence": 1,
+        "probabilities": {
+          "0": 1,
+          "1": 0,
+          "2": 0,
+          "3": 0
+        },
+        "probsHash": "814daf0d4c439345f262b7ddc1fcc54e87c01968214e7a35afe70ee9912adfe7",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i1_casual",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 17,
+        "requestHash": "3bae16cfc3837bdf6f6659d347e1f9d7bb1733890ae5875453701c12b10befaa",
+        "score": 0,
+        "confidence": 1,
+        "probabilities": {
+          "0": 1,
+          "1": 0,
+          "2": 0,
+          "3": 0
+        },
+        "probsHash": "814daf0d4c439345f262b7ddc1fcc54e87c01968214e7a35afe70ee9912adfe7",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i1_casual",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 18,
+        "requestHash": "3bae16cfc3837bdf6f6659d347e1f9d7bb1733890ae5875453701c12b10befaa",
+        "score": 0,
+        "confidence": 1,
+        "probabilities": {
+          "0": 1,
+          "1": 0,
+          "2": 0,
+          "3": 0
+        },
+        "probsHash": "814daf0d4c439345f262b7ddc1fcc54e87c01968214e7a35afe70ee9912adfe7",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i1_casual",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 19,
+        "requestHash": "3bae16cfc3837bdf6f6659d347e1f9d7bb1733890ae5875453701c12b10befaa",
+        "score": 0,
+        "confidence": 1,
+        "probabilities": {
+          "0": 1,
+          "1": 0,
+          "2": 0,
+          "3": 0
+        },
+        "probsHash": "814daf0d4c439345f262b7ddc1fcc54e87c01968214e7a35afe70ee9912adfe7",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i1_casual",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 20,
+        "requestHash": "3bae16cfc3837bdf6f6659d347e1f9d7bb1733890ae5875453701c12b10befaa",
+        "score": 0,
+        "confidence": 1,
+        "probabilities": {
+          "0": 1,
+          "1": 0,
+          "2": 0,
+          "3": 0
+        },
+        "probsHash": "814daf0d4c439345f262b7ddc1fcc54e87c01968214e7a35afe70ee9912adfe7",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i2_relaxed",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 1,
+        "requestHash": "f98024bd3ac66b05c5fd1725f408e4d99edc0de9ef03eb20f3364a766905c286",
+        "score": 0.69,
+        "confidence": 0.68,
+        "probabilities": {
+          "0": 0.32,
+          "1": 0.68,
+          "2": 0,
+          "3": 0
+        },
+        "probsHash": "d783b9f37f64c4767be90363d67e1d592e777576a80ad3195cf9600a145662df",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i2_relaxed",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 2,
+        "requestHash": "f98024bd3ac66b05c5fd1725f408e4d99edc0de9ef03eb20f3364a766905c286",
+        "score": 0.69,
+        "confidence": 0.68,
+        "probabilities": {
+          "0": 0.31,
+          "1": 0.6900000000000001,
+          "2": 0,
+          "3": 0
+        },
+        "probsHash": "c64e50f1ccc4083466bd47aeadd6f4cf9d766eb6337c9a233887d1c8e7c2705a",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i2_relaxed",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 3,
+        "requestHash": "f98024bd3ac66b05c5fd1725f408e4d99edc0de9ef03eb20f3364a766905c286",
+        "score": 0.67,
+        "confidence": 0.66,
+        "probabilities": {
+          "0": 0.33,
+          "1": 0.67,
+          "2": 0,
+          "3": 0
+        },
+        "probsHash": "25b97817935b7477bcb074ce4d1953df59ae898bb19ef309ac8bbba8a0fdef85",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i2_relaxed",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 4,
+        "requestHash": "f98024bd3ac66b05c5fd1725f408e4d99edc0de9ef03eb20f3364a766905c286",
+        "score": 0.69,
+        "confidence": 0.69,
+        "probabilities": {
+          "0": 0.31,
+          "1": 0.69,
+          "2": 0,
+          "3": 0
+        },
+        "probsHash": "f480bffe1c1d99593fd1405118a601c83f66b48878ac5d163bb3c080bbab875e",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i2_relaxed",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 5,
+        "requestHash": "f98024bd3ac66b05c5fd1725f408e4d99edc0de9ef03eb20f3364a766905c286",
+        "score": 0.68,
+        "confidence": 0.67,
+        "probabilities": {
+          "0": 0.33,
+          "1": 0.67,
+          "2": 0,
+          "3": 0
+        },
+        "probsHash": "25b97817935b7477bcb074ce4d1953df59ae898bb19ef309ac8bbba8a0fdef85",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i2_relaxed",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 6,
+        "requestHash": "f98024bd3ac66b05c5fd1725f408e4d99edc0de9ef03eb20f3364a766905c286",
+        "score": 0.7,
+        "confidence": 0.7,
+        "probabilities": {
+          "0": 0.3,
+          "1": 0.7,
+          "2": 0,
+          "3": 0
+        },
+        "probsHash": "6964f08c247eff32d7d8f86ec3efacdeb4ec4128a0aa0a27e932a680a33ada8d",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i2_relaxed",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 7,
+        "requestHash": "f98024bd3ac66b05c5fd1725f408e4d99edc0de9ef03eb20f3364a766905c286",
+        "score": 0.68,
+        "confidence": 0.67,
+        "probabilities": {
+          "0": 0.32,
+          "1": 0.68,
+          "2": 0,
+          "3": 0
+        },
+        "probsHash": "d783b9f37f64c4767be90363d67e1d592e777576a80ad3195cf9600a145662df",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i2_relaxed",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 8,
+        "requestHash": "f98024bd3ac66b05c5fd1725f408e4d99edc0de9ef03eb20f3364a766905c286",
+        "score": 0.69,
+        "confidence": 0.68,
+        "probabilities": {
+          "0": 0.32,
+          "1": 0.68,
+          "2": 0,
+          "3": 0
+        },
+        "probsHash": "d783b9f37f64c4767be90363d67e1d592e777576a80ad3195cf9600a145662df",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i2_relaxed",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 9,
+        "requestHash": "f98024bd3ac66b05c5fd1725f408e4d99edc0de9ef03eb20f3364a766905c286",
+        "score": 0.7,
+        "confidence": 0.69,
+        "probabilities": {
+          "0": 0.3,
+          "1": 0.7,
+          "2": 0,
+          "3": 0
+        },
+        "probsHash": "6964f08c247eff32d7d8f86ec3efacdeb4ec4128a0aa0a27e932a680a33ada8d",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i2_relaxed",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 10,
+        "requestHash": "f98024bd3ac66b05c5fd1725f408e4d99edc0de9ef03eb20f3364a766905c286",
+        "score": 0.71,
+        "confidence": 0.71,
+        "probabilities": {
+          "0": 0.29,
+          "1": 0.71,
+          "2": 0,
+          "3": 0
+        },
+        "probsHash": "2c7e8c9e75362c36a6371e830dbc2ae9811f67c6f5aafdf1b96eadc9c3c580f7",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i2_relaxed",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 11,
+        "requestHash": "f98024bd3ac66b05c5fd1725f408e4d99edc0de9ef03eb20f3364a766905c286",
+        "score": 0.71,
+        "confidence": 0.71,
+        "probabilities": {
+          "0": 0.29,
+          "1": 0.71,
+          "2": 0,
+          "3": 0
+        },
+        "probsHash": "2c7e8c9e75362c36a6371e830dbc2ae9811f67c6f5aafdf1b96eadc9c3c580f7",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i2_relaxed",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 12,
+        "requestHash": "f98024bd3ac66b05c5fd1725f408e4d99edc0de9ef03eb20f3364a766905c286",
+        "score": 0.68,
+        "confidence": 0.68,
+        "probabilities": {
+          "0": 0.32,
+          "1": 0.68,
+          "2": 0,
+          "3": 0
+        },
+        "probsHash": "d783b9f37f64c4767be90363d67e1d592e777576a80ad3195cf9600a145662df",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i2_relaxed",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 13,
+        "requestHash": "f98024bd3ac66b05c5fd1725f408e4d99edc0de9ef03eb20f3364a766905c286",
+        "score": 0.71,
+        "confidence": 0.7,
+        "probabilities": {
+          "0": 0.29,
+          "1": 0.71,
+          "2": 0,
+          "3": 0
+        },
+        "probsHash": "2c7e8c9e75362c36a6371e830dbc2ae9811f67c6f5aafdf1b96eadc9c3c580f7",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i2_relaxed",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 14,
+        "requestHash": "f98024bd3ac66b05c5fd1725f408e4d99edc0de9ef03eb20f3364a766905c286",
+        "score": 0.69,
+        "confidence": 0.69,
+        "probabilities": {
+          "0": 0.31,
+          "1": 0.69,
+          "2": 0,
+          "3": 0
+        },
+        "probsHash": "f480bffe1c1d99593fd1405118a601c83f66b48878ac5d163bb3c080bbab875e",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i2_relaxed",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 15,
+        "requestHash": "f98024bd3ac66b05c5fd1725f408e4d99edc0de9ef03eb20f3364a766905c286",
+        "score": 0.69,
+        "confidence": 0.69,
+        "probabilities": {
+          "0": 0.31,
+          "1": 0.69,
+          "2": 0,
+          "3": 0
+        },
+        "probsHash": "f480bffe1c1d99593fd1405118a601c83f66b48878ac5d163bb3c080bbab875e",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i2_relaxed",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 16,
+        "requestHash": "f98024bd3ac66b05c5fd1725f408e4d99edc0de9ef03eb20f3364a766905c286",
+        "score": 0.71,
+        "confidence": 0.7,
+        "probabilities": {
+          "0": 0.29,
+          "1": 0.71,
+          "2": 0,
+          "3": 0
+        },
+        "probsHash": "2c7e8c9e75362c36a6371e830dbc2ae9811f67c6f5aafdf1b96eadc9c3c580f7",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i2_relaxed",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 17,
+        "requestHash": "f98024bd3ac66b05c5fd1725f408e4d99edc0de9ef03eb20f3364a766905c286",
+        "score": 0.68,
+        "confidence": 0.68,
+        "probabilities": {
+          "0": 0.32,
+          "1": 0.68,
+          "2": 0,
+          "3": 0
+        },
+        "probsHash": "d783b9f37f64c4767be90363d67e1d592e777576a80ad3195cf9600a145662df",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i2_relaxed",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 18,
+        "requestHash": "f98024bd3ac66b05c5fd1725f408e4d99edc0de9ef03eb20f3364a766905c286",
+        "score": 0.7,
+        "confidence": 0.69,
+        "probabilities": {
+          "0": 0.31,
+          "1": 0.69,
+          "2": 0,
+          "3": 0
+        },
+        "probsHash": "f480bffe1c1d99593fd1405118a601c83f66b48878ac5d163bb3c080bbab875e",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i2_relaxed",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 19,
+        "requestHash": "f98024bd3ac66b05c5fd1725f408e4d99edc0de9ef03eb20f3364a766905c286",
+        "score": 0.71,
+        "confidence": 0.71,
+        "probabilities": {
+          "0": 0.29,
+          "1": 0.71,
+          "2": 0,
+          "3": 0
+        },
+        "probsHash": "2c7e8c9e75362c36a6371e830dbc2ae9811f67c6f5aafdf1b96eadc9c3c580f7",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i2_relaxed",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 20,
+        "requestHash": "f98024bd3ac66b05c5fd1725f408e4d99edc0de9ef03eb20f3364a766905c286",
+        "score": 0.69,
+        "confidence": 0.68,
+        "probabilities": {
+          "0": 0.32,
+          "1": 0.68,
+          "2": 0,
+          "3": 0
+        },
+        "probsHash": "d783b9f37f64c4767be90363d67e1d592e777576a80ad3195cf9600a145662df",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i3_mid_ambiguous",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 1,
+        "requestHash": "99507db6dca9c942c897ca48e854613ee34324436204471693018c9f46dcc62a",
+        "score": 1.86,
+        "confidence": 0.83,
+        "probabilities": {
+          "0": 0,
+          "1": 0.16,
+          "2": 0.83,
+          "3": 0.01
+        },
+        "probsHash": "2fc423a2ec3c7c793ee0b2587acdf55adeef8e32560ea2992718212c29ea2853",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i3_mid_ambiguous",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 2,
+        "requestHash": "99507db6dca9c942c897ca48e854613ee34324436204471693018c9f46dcc62a",
+        "score": 1.86,
+        "confidence": 0.84,
+        "probabilities": {
+          "0": 0,
+          "1": 0.15,
+          "2": 0.84,
+          "3": 0.01
+        },
+        "probsHash": "20ea7ed75ee6cf3ff6fbe411d0e7447245bf2d3f01a89f63c9b40c0e8138ca9c",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i3_mid_ambiguous",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 3,
+        "requestHash": "99507db6dca9c942c897ca48e854613ee34324436204471693018c9f46dcc62a",
+        "score": 1.84,
+        "confidence": 0.82,
+        "probabilities": {
+          "0": 0,
+          "1": 0.17,
+          "2": 0.82,
+          "3": 0.01
+        },
+        "probsHash": "61165ccac0c258b305bf6b20f68fb0f854263f818f59232e617dd1525e09732f",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i3_mid_ambiguous",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 4,
+        "requestHash": "99507db6dca9c942c897ca48e854613ee34324436204471693018c9f46dcc62a",
+        "score": 1.87,
+        "confidence": 0.84,
+        "probabilities": {
+          "0": 0,
+          "1": 0.15,
+          "2": 0.84,
+          "3": 0.01
+        },
+        "probsHash": "20ea7ed75ee6cf3ff6fbe411d0e7447245bf2d3f01a89f63c9b40c0e8138ca9c",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i3_mid_ambiguous",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 5,
+        "requestHash": "99507db6dca9c942c897ca48e854613ee34324436204471693018c9f46dcc62a",
+        "score": 1.86,
+        "confidence": 0.83,
+        "probabilities": {
+          "0": 0,
+          "1": 0.15,
+          "2": 0.84,
+          "3": 0.01
+        },
+        "probsHash": "20ea7ed75ee6cf3ff6fbe411d0e7447245bf2d3f01a89f63c9b40c0e8138ca9c",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i3_mid_ambiguous",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 6,
+        "requestHash": "99507db6dca9c942c897ca48e854613ee34324436204471693018c9f46dcc62a",
+        "score": 1.9,
+        "confidence": 0.86,
+        "probabilities": {
+          "0": 0,
+          "1": 0.12,
+          "2": 0.86,
+          "3": 0.02
+        },
+        "probsHash": "91ca09bda76393818ebdfd96bf647e4ceda042337ffaf8d60832aa8c6794a998",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i3_mid_ambiguous",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 7,
+        "requestHash": "99507db6dca9c942c897ca48e854613ee34324436204471693018c9f46dcc62a",
+        "score": 1.86,
+        "confidence": 0.83,
+        "probabilities": {
+          "0": 0,
+          "1": 0.16,
+          "2": 0.83,
+          "3": 0.01
+        },
+        "probsHash": "2fc423a2ec3c7c793ee0b2587acdf55adeef8e32560ea2992718212c29ea2853",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i3_mid_ambiguous",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 8,
+        "requestHash": "99507db6dca9c942c897ca48e854613ee34324436204471693018c9f46dcc62a",
+        "score": 1.85,
+        "confidence": 0.83,
+        "probabilities": {
+          "0": 0,
+          "1": 0.16,
+          "2": 0.83,
+          "3": 0.01
+        },
+        "probsHash": "2fc423a2ec3c7c793ee0b2587acdf55adeef8e32560ea2992718212c29ea2853",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i3_mid_ambiguous",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 9,
+        "requestHash": "99507db6dca9c942c897ca48e854613ee34324436204471693018c9f46dcc62a",
+        "score": 1.86,
+        "confidence": 0.83,
+        "probabilities": {
+          "0": 0,
+          "1": 0.16,
+          "2": 0.83,
+          "3": 0.01
+        },
+        "probsHash": "2fc423a2ec3c7c793ee0b2587acdf55adeef8e32560ea2992718212c29ea2853",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i3_mid_ambiguous",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 10,
+        "requestHash": "99507db6dca9c942c897ca48e854613ee34324436204471693018c9f46dcc62a",
+        "score": 1.84,
+        "confidence": 0.82,
+        "probabilities": {
+          "0": 0,
+          "1": 0.17,
+          "2": 0.82,
+          "3": 0.01
+        },
+        "probsHash": "61165ccac0c258b305bf6b20f68fb0f854263f818f59232e617dd1525e09732f",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i3_mid_ambiguous",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 11,
+        "requestHash": "99507db6dca9c942c897ca48e854613ee34324436204471693018c9f46dcc62a",
+        "score": 1.86,
+        "confidence": 0.83,
+        "probabilities": {
+          "0": 0,
+          "1": 0.15,
+          "2": 0.84,
+          "3": 0.01
+        },
+        "probsHash": "20ea7ed75ee6cf3ff6fbe411d0e7447245bf2d3f01a89f63c9b40c0e8138ca9c",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i3_mid_ambiguous",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 12,
+        "requestHash": "99507db6dca9c942c897ca48e854613ee34324436204471693018c9f46dcc62a",
+        "score": 1.88,
+        "confidence": 0.85,
+        "probabilities": {
+          "0": 0,
+          "1": 0.13,
+          "2": 0.86,
+          "3": 0.01
+        },
+        "probsHash": "92e40b33dbabb046e597245e10f4dc5177c2809ef4fb867409034ffe7aecb6fb",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i3_mid_ambiguous",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 13,
+        "requestHash": "99507db6dca9c942c897ca48e854613ee34324436204471693018c9f46dcc62a",
+        "score": 1.86,
+        "confidence": 0.83,
+        "probabilities": {
+          "0": 0,
+          "1": 0.15,
+          "2": 0.83,
+          "3": 0.02
+        },
+        "probsHash": "45216e8d455510cd3f1057d8e5cee07db0301d52cd4fee53c3cf9692cc08cbe8",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i3_mid_ambiguous",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 14,
+        "requestHash": "99507db6dca9c942c897ca48e854613ee34324436204471693018c9f46dcc62a",
+        "score": 1.86,
+        "confidence": 0.83,
+        "probabilities": {
+          "0": 0,
+          "1": 0.15,
+          "2": 0.84,
+          "3": 0.01
+        },
+        "probsHash": "20ea7ed75ee6cf3ff6fbe411d0e7447245bf2d3f01a89f63c9b40c0e8138ca9c",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i3_mid_ambiguous",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 15,
+        "requestHash": "99507db6dca9c942c897ca48e854613ee34324436204471693018c9f46dcc62a",
+        "score": 1.89,
+        "confidence": 0.85,
+        "probabilities": {
+          "0": 0,
+          "1": 0.13,
+          "2": 0.85,
+          "3": 0.02
+        },
+        "probsHash": "ca27750feef3e1367ca49fc993e1065f65b1e573f075d4560d93133ac3c04db6",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i3_mid_ambiguous",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 16,
+        "requestHash": "99507db6dca9c942c897ca48e854613ee34324436204471693018c9f46dcc62a",
+        "score": 1.88,
+        "confidence": 0.84,
+        "probabilities": {
+          "0": 0,
+          "1": 0.14,
+          "2": 0.84,
+          "3": 0.02
+        },
+        "probsHash": "859fdf0fcc88fc77dc656be1d142af12d2e2044ee097ecf6e7af1044325052df",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i3_mid_ambiguous",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 17,
+        "requestHash": "99507db6dca9c942c897ca48e854613ee34324436204471693018c9f46dcc62a",
+        "score": 1.89,
+        "confidence": 0.86,
+        "probabilities": {
+          "0": 0,
+          "1": 0.13,
+          "2": 0.86,
+          "3": 0.01
+        },
+        "probsHash": "92e40b33dbabb046e597245e10f4dc5177c2809ef4fb867409034ffe7aecb6fb",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i3_mid_ambiguous",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 18,
+        "requestHash": "99507db6dca9c942c897ca48e854613ee34324436204471693018c9f46dcc62a",
+        "score": 1.89,
+        "confidence": 0.85,
+        "probabilities": {
+          "0": 0,
+          "1": 0.13,
+          "2": 0.85,
+          "3": 0.02
+        },
+        "probsHash": "ca27750feef3e1367ca49fc993e1065f65b1e573f075d4560d93133ac3c04db6",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i3_mid_ambiguous",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 19,
+        "requestHash": "99507db6dca9c942c897ca48e854613ee34324436204471693018c9f46dcc62a",
+        "score": 1.86,
+        "confidence": 0.83,
+        "probabilities": {
+          "0": 0,
+          "1": 0.15,
+          "2": 0.84,
+          "3": 0.01
+        },
+        "probsHash": "20ea7ed75ee6cf3ff6fbe411d0e7447245bf2d3f01a89f63c9b40c0e8138ca9c",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i3_mid_ambiguous",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 20,
+        "requestHash": "99507db6dca9c942c897ca48e854613ee34324436204471693018c9f46dcc62a",
+        "score": 1.88,
+        "confidence": 0.85,
+        "probabilities": {
+          "0": 0,
+          "1": 0.13,
+          "2": 0.85,
+          "3": 0.02
+        },
+        "probsHash": "ca27750feef3e1367ca49fc993e1065f65b1e573f075d4560d93133ac3c04db6",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i4_mid_ambiguous",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 1,
+        "requestHash": "efc52d4e59470fd7a4eff6b74d41d154a1b664b0c8de0fd1bc6727581626848b",
+        "score": 1.21,
+        "confidence": 0.46,
+        "probabilities": {
+          "0": 0.17,
+          "1": 0.49,
+          "2": 0.3,
+          "3": 0.04
+        },
+        "probsHash": "41855d4f3a43bef4d2a16f775f80939b735c27204ba841a2673abafc6ebf749c",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i4_mid_ambiguous",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 2,
+        "requestHash": "efc52d4e59470fd7a4eff6b74d41d154a1b664b0c8de0fd1bc6727581626848b",
+        "score": 1.17,
+        "confidence": 0.53,
+        "probabilities": {
+          "0": 0.15,
+          "1": 0.55,
+          "2": 0.27,
+          "3": 0.03
+        },
+        "probsHash": "875ecda1a264c264a91e9eaea6a0da06429a8b0494810ca4d6dfae9fd729b979",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i4_mid_ambiguous",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 3,
+        "requestHash": "efc52d4e59470fd7a4eff6b74d41d154a1b664b0c8de0fd1bc6727581626848b",
+        "score": 1.25,
+        "confidence": 0.49,
+        "probabilities": {
+          "0": 0.13,
+          "1": 0.52,
+          "2": 0.31,
+          "3": 0.04
+        },
+        "probsHash": "fc168c0e403d25b2551eb86d65f07c686dc9e7a7f2ad8f5c2625ee0a27eac26d",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i4_mid_ambiguous",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 4,
+        "requestHash": "efc52d4e59470fd7a4eff6b74d41d154a1b664b0c8de0fd1bc6727581626848b",
+        "score": 1.21,
+        "confidence": 0.5,
+        "probabilities": {
+          "0": 0.15,
+          "1": 0.53,
+          "2": 0.29,
+          "3": 0.03
+        },
+        "probsHash": "195c8b03395a438a6425d6acf997179c4f46bf505db947c7dbac5818c91faa3d",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i4_mid_ambiguous",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 5,
+        "requestHash": "efc52d4e59470fd7a4eff6b74d41d154a1b664b0c8de0fd1bc6727581626848b",
+        "score": 1.17,
+        "confidence": 0.51,
+        "probabilities": {
+          "0": 0.16,
+          "1": 0.54,
+          "2": 0.27,
+          "3": 0.03
+        },
+        "probsHash": "5b96b54cd13b5d4edb8f9af7436f9948964e451f030c7538d4b4ff53e31c8394",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i4_mid_ambiguous",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 6,
+        "requestHash": "efc52d4e59470fd7a4eff6b74d41d154a1b664b0c8de0fd1bc6727581626848b",
+        "score": 1.23,
+        "confidence": 0.48,
+        "probabilities": {
+          "0": 0.15,
+          "1": 0.51,
+          "2": 0.3,
+          "3": 0.04
+        },
+        "probsHash": "7c0dc7d730608b335c6d8340ee95fd4febeda5c7bf460ad283040d257b7a924f",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i4_mid_ambiguous",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 7,
+        "requestHash": "efc52d4e59470fd7a4eff6b74d41d154a1b664b0c8de0fd1bc6727581626848b",
+        "score": 1.22,
+        "confidence": 0.48,
+        "probabilities": {
+          "0": 0.15,
+          "1": 0.52,
+          "2": 0.29,
+          "3": 0.04
+        },
+        "probsHash": "63feda346ce978736ce41774b7c2c222fda87c1f812cf360f7fef248551adfc1",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i4_mid_ambiguous",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 8,
+        "requestHash": "efc52d4e59470fd7a4eff6b74d41d154a1b664b0c8de0fd1bc6727581626848b",
+        "score": 1.3,
+        "confidence": 0.46,
+        "probabilities": {
+          "0": 0.12,
+          "1": 0.51,
+          "2": 0.33,
+          "3": 0.04
+        },
+        "probsHash": "288cd926b4f9430ae04f15ffdece116aacaa7b3fbb010e64bf58b68998aee8a7",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i4_mid_ambiguous",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 9,
+        "requestHash": "efc52d4e59470fd7a4eff6b74d41d154a1b664b0c8de0fd1bc6727581626848b",
+        "score": 1.17,
+        "confidence": 0.51,
+        "probabilities": {
+          "0": 0.16,
+          "1": 0.54,
+          "2": 0.27,
+          "3": 0.03
+        },
+        "probsHash": "5b96b54cd13b5d4edb8f9af7436f9948964e451f030c7538d4b4ff53e31c8394",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i4_mid_ambiguous",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 10,
+        "requestHash": "efc52d4e59470fd7a4eff6b74d41d154a1b664b0c8de0fd1bc6727581626848b",
+        "score": 1.25,
+        "confidence": 0.51,
+        "probabilities": {
+          "0": 0.12,
+          "1": 0.55,
+          "2": 0.29,
+          "3": 0.04
+        },
+        "probsHash": "c0cb88f0833e5d26cf05174d92b27e86d3d501ddb491e64c4acaca3551b35f14",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i4_mid_ambiguous",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 11,
+        "requestHash": "efc52d4e59470fd7a4eff6b74d41d154a1b664b0c8de0fd1bc6727581626848b",
+        "score": 1.28,
+        "confidence": 0.48,
+        "probabilities": {
+          "0": 0.12,
+          "1": 0.52,
+          "2": 0.32,
+          "3": 0.04
+        },
+        "probsHash": "90c62ffc41840217425d45dbaa8dac1a572d34cc5acb59074e62e2541644f226",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i4_mid_ambiguous",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 12,
+        "requestHash": "efc52d4e59470fd7a4eff6b74d41d154a1b664b0c8de0fd1bc6727581626848b",
+        "score": 1.18,
+        "confidence": 0.5,
+        "probabilities": {
+          "0": 0.16,
+          "1": 0.53,
+          "2": 0.28,
+          "3": 0.03
+        },
+        "probsHash": "7532612f5cfc1c3dbb1e2a76ae72973d3bf7dcda042e637362c53217d625a663",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i4_mid_ambiguous",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 13,
+        "requestHash": "efc52d4e59470fd7a4eff6b74d41d154a1b664b0c8de0fd1bc6727581626848b",
+        "score": 1.23,
+        "confidence": 0.47,
+        "probabilities": {
+          "0": 0.15,
+          "1": 0.51,
+          "2": 0.3,
+          "3": 0.04
+        },
+        "probsHash": "7c0dc7d730608b335c6d8340ee95fd4febeda5c7bf460ad283040d257b7a924f",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i4_mid_ambiguous",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 14,
+        "requestHash": "efc52d4e59470fd7a4eff6b74d41d154a1b664b0c8de0fd1bc6727581626848b",
+        "score": 1.23,
+        "confidence": 0.5,
+        "probabilities": {
+          "0": 0.13,
+          "1": 0.54,
+          "2": 0.29,
+          "3": 0.04
+        },
+        "probsHash": "786a8fdb5231418e30a176c5feb2d1f511f7a4c723fd84e1912bf148c8dd1279",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i4_mid_ambiguous",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 15,
+        "requestHash": "efc52d4e59470fd7a4eff6b74d41d154a1b664b0c8de0fd1bc6727581626848b",
+        "score": 1.19,
+        "confidence": 0.51,
+        "probabilities": {
+          "0": 0.15,
+          "1": 0.54,
+          "2": 0.28,
+          "3": 0.03
+        },
+        "probsHash": "e68059413850c0d6bcf00c564f368974b168635acc685c6947906056521ab1ff",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i4_mid_ambiguous",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 16,
+        "requestHash": "efc52d4e59470fd7a4eff6b74d41d154a1b664b0c8de0fd1bc6727581626848b",
+        "score": 1.23,
+        "confidence": 0.48,
+        "probabilities": {
+          "0": 0.15,
+          "1": 0.5,
+          "2": 0.31,
+          "3": 0.04
+        },
+        "probsHash": "d22323103f39802a412949d89f757ac72073edd5e5a647691012f425ea793787",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i4_mid_ambiguous",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 17,
+        "requestHash": "efc52d4e59470fd7a4eff6b74d41d154a1b664b0c8de0fd1bc6727581626848b",
+        "score": 1.19,
+        "confidence": 0.51,
+        "probabilities": {
+          "0": 0.15,
+          "1": 0.54,
+          "2": 0.28,
+          "3": 0.03
+        },
+        "probsHash": "e68059413850c0d6bcf00c564f368974b168635acc685c6947906056521ab1ff",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i4_mid_ambiguous",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 18,
+        "requestHash": "efc52d4e59470fd7a4eff6b74d41d154a1b664b0c8de0fd1bc6727581626848b",
+        "score": 1.2,
+        "confidence": 0.51,
+        "probabilities": {
+          "0": 0.15,
+          "1": 0.53,
+          "2": 0.29,
+          "3": 0.03
+        },
+        "probsHash": "195c8b03395a438a6425d6acf997179c4f46bf505db947c7dbac5818c91faa3d",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i4_mid_ambiguous",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 19,
+        "requestHash": "efc52d4e59470fd7a4eff6b74d41d154a1b664b0c8de0fd1bc6727581626848b",
+        "score": 1.22,
+        "confidence": 0.5,
+        "probabilities": {
+          "0": 0.14,
+          "1": 0.54,
+          "2": 0.29,
+          "3": 0.03
+        },
+        "probsHash": "3ba08df88c198f21f7a7638969723cc2a61506879f01ca7363c91c20a9bb2aeb",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i4_mid_ambiguous",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 20,
+        "requestHash": "efc52d4e59470fd7a4eff6b74d41d154a1b664b0c8de0fd1bc6727581626848b",
+        "score": 1.22,
+        "confidence": 0.47,
+        "probabilities": {
+          "0": 0.15,
+          "1": 0.51,
+          "2": 0.31,
+          "3": 0.03
+        },
+        "probsHash": "78362d8db8426d8dcaa88d88db13bdf967d6bf6655af6e360fbd360e33bb5ba4",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i5_formal",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 1,
+        "requestHash": "dcb6a490530360a957a02a6bb8fe03a3c7082f4a60f27f13a2c3133381fe1a6d",
+        "score": 3,
+        "confidence": 1,
+        "probabilities": {
+          "0": 0,
+          "1": 0,
+          "2": 0,
+          "3": 1
+        },
+        "probsHash": "fe3df1ef8b7ece1cf55d8ed1792c6f1248a185c4ca5d213abbf525870c4e9a77",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i5_formal",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 2,
+        "requestHash": "dcb6a490530360a957a02a6bb8fe03a3c7082f4a60f27f13a2c3133381fe1a6d",
+        "score": 3,
+        "confidence": 1,
+        "probabilities": {
+          "0": 0,
+          "1": 0,
+          "2": 0,
+          "3": 1
+        },
+        "probsHash": "fe3df1ef8b7ece1cf55d8ed1792c6f1248a185c4ca5d213abbf525870c4e9a77",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i5_formal",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 3,
+        "requestHash": "dcb6a490530360a957a02a6bb8fe03a3c7082f4a60f27f13a2c3133381fe1a6d",
+        "score": 3,
+        "confidence": 1,
+        "probabilities": {
+          "0": 0,
+          "1": 0,
+          "2": 0,
+          "3": 1
+        },
+        "probsHash": "fe3df1ef8b7ece1cf55d8ed1792c6f1248a185c4ca5d213abbf525870c4e9a77",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i5_formal",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 4,
+        "requestHash": "dcb6a490530360a957a02a6bb8fe03a3c7082f4a60f27f13a2c3133381fe1a6d",
+        "score": 3,
+        "confidence": 1,
+        "probabilities": {
+          "0": 0,
+          "1": 0,
+          "2": 0,
+          "3": 1
+        },
+        "probsHash": "fe3df1ef8b7ece1cf55d8ed1792c6f1248a185c4ca5d213abbf525870c4e9a77",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i5_formal",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 5,
+        "requestHash": "dcb6a490530360a957a02a6bb8fe03a3c7082f4a60f27f13a2c3133381fe1a6d",
+        "score": 3,
+        "confidence": 1,
+        "probabilities": {
+          "0": 0,
+          "1": 0,
+          "2": 0,
+          "3": 1
+        },
+        "probsHash": "fe3df1ef8b7ece1cf55d8ed1792c6f1248a185c4ca5d213abbf525870c4e9a77",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i5_formal",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 6,
+        "requestHash": "dcb6a490530360a957a02a6bb8fe03a3c7082f4a60f27f13a2c3133381fe1a6d",
+        "score": 3,
+        "confidence": 1,
+        "probabilities": {
+          "0": 0,
+          "1": 0,
+          "2": 0,
+          "3": 1
+        },
+        "probsHash": "fe3df1ef8b7ece1cf55d8ed1792c6f1248a185c4ca5d213abbf525870c4e9a77",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i5_formal",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 7,
+        "requestHash": "dcb6a490530360a957a02a6bb8fe03a3c7082f4a60f27f13a2c3133381fe1a6d",
+        "score": 3,
+        "confidence": 1,
+        "probabilities": {
+          "0": 0,
+          "1": 0,
+          "2": 0,
+          "3": 1
+        },
+        "probsHash": "fe3df1ef8b7ece1cf55d8ed1792c6f1248a185c4ca5d213abbf525870c4e9a77",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i5_formal",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 8,
+        "requestHash": "dcb6a490530360a957a02a6bb8fe03a3c7082f4a60f27f13a2c3133381fe1a6d",
+        "score": 3,
+        "confidence": 1,
+        "probabilities": {
+          "0": 0,
+          "1": 0,
+          "2": 0,
+          "3": 1
+        },
+        "probsHash": "fe3df1ef8b7ece1cf55d8ed1792c6f1248a185c4ca5d213abbf525870c4e9a77",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i5_formal",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 9,
+        "requestHash": "dcb6a490530360a957a02a6bb8fe03a3c7082f4a60f27f13a2c3133381fe1a6d",
+        "score": 3,
+        "confidence": 1,
+        "probabilities": {
+          "0": 0,
+          "1": 0,
+          "2": 0,
+          "3": 1
+        },
+        "probsHash": "fe3df1ef8b7ece1cf55d8ed1792c6f1248a185c4ca5d213abbf525870c4e9a77",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i5_formal",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 10,
+        "requestHash": "dcb6a490530360a957a02a6bb8fe03a3c7082f4a60f27f13a2c3133381fe1a6d",
+        "score": 3,
+        "confidence": 1,
+        "probabilities": {
+          "0": 0,
+          "1": 0,
+          "2": 0,
+          "3": 1
+        },
+        "probsHash": "fe3df1ef8b7ece1cf55d8ed1792c6f1248a185c4ca5d213abbf525870c4e9a77",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i5_formal",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 11,
+        "requestHash": "dcb6a490530360a957a02a6bb8fe03a3c7082f4a60f27f13a2c3133381fe1a6d",
+        "score": 3,
+        "confidence": 1,
+        "probabilities": {
+          "0": 0,
+          "1": 0,
+          "2": 0,
+          "3": 1
+        },
+        "probsHash": "fe3df1ef8b7ece1cf55d8ed1792c6f1248a185c4ca5d213abbf525870c4e9a77",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i5_formal",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 12,
+        "requestHash": "dcb6a490530360a957a02a6bb8fe03a3c7082f4a60f27f13a2c3133381fe1a6d",
+        "score": 3,
+        "confidence": 1,
+        "probabilities": {
+          "0": 0,
+          "1": 0,
+          "2": 0,
+          "3": 1
+        },
+        "probsHash": "fe3df1ef8b7ece1cf55d8ed1792c6f1248a185c4ca5d213abbf525870c4e9a77",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i5_formal",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 13,
+        "requestHash": "dcb6a490530360a957a02a6bb8fe03a3c7082f4a60f27f13a2c3133381fe1a6d",
+        "score": 3,
+        "confidence": 1,
+        "probabilities": {
+          "0": 0,
+          "1": 0,
+          "2": 0,
+          "3": 1
+        },
+        "probsHash": "fe3df1ef8b7ece1cf55d8ed1792c6f1248a185c4ca5d213abbf525870c4e9a77",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i5_formal",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 14,
+        "requestHash": "dcb6a490530360a957a02a6bb8fe03a3c7082f4a60f27f13a2c3133381fe1a6d",
+        "score": 3,
+        "confidence": 1,
+        "probabilities": {
+          "0": 0,
+          "1": 0,
+          "2": 0,
+          "3": 1
+        },
+        "probsHash": "fe3df1ef8b7ece1cf55d8ed1792c6f1248a185c4ca5d213abbf525870c4e9a77",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i5_formal",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 15,
+        "requestHash": "dcb6a490530360a957a02a6bb8fe03a3c7082f4a60f27f13a2c3133381fe1a6d",
+        "score": 3,
+        "confidence": 1,
+        "probabilities": {
+          "0": 0,
+          "1": 0,
+          "2": 0,
+          "3": 1
+        },
+        "probsHash": "fe3df1ef8b7ece1cf55d8ed1792c6f1248a185c4ca5d213abbf525870c4e9a77",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i5_formal",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 16,
+        "requestHash": "dcb6a490530360a957a02a6bb8fe03a3c7082f4a60f27f13a2c3133381fe1a6d",
+        "score": 3,
+        "confidence": 1,
+        "probabilities": {
+          "0": 0,
+          "1": 0,
+          "2": 0,
+          "3": 1
+        },
+        "probsHash": "fe3df1ef8b7ece1cf55d8ed1792c6f1248a185c4ca5d213abbf525870c4e9a77",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i5_formal",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 17,
+        "requestHash": "dcb6a490530360a957a02a6bb8fe03a3c7082f4a60f27f13a2c3133381fe1a6d",
+        "score": 3,
+        "confidence": 1,
+        "probabilities": {
+          "0": 0,
+          "1": 0,
+          "2": 0,
+          "3": 1
+        },
+        "probsHash": "fe3df1ef8b7ece1cf55d8ed1792c6f1248a185c4ca5d213abbf525870c4e9a77",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i5_formal",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 18,
+        "requestHash": "dcb6a490530360a957a02a6bb8fe03a3c7082f4a60f27f13a2c3133381fe1a6d",
+        "score": 3,
+        "confidence": 1,
+        "probabilities": {
+          "0": 0,
+          "1": 0,
+          "2": 0,
+          "3": 1
+        },
+        "probsHash": "fe3df1ef8b7ece1cf55d8ed1792c6f1248a185c4ca5d213abbf525870c4e9a77",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i5_formal",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 19,
+        "requestHash": "dcb6a490530360a957a02a6bb8fe03a3c7082f4a60f27f13a2c3133381fe1a6d",
+        "score": 3,
+        "confidence": 1,
+        "probabilities": {
+          "0": 0,
+          "1": 0,
+          "2": 0,
+          "3": 1
+        },
+        "probsHash": "fe3df1ef8b7ece1cf55d8ed1792c6f1248a185c4ca5d213abbf525870c4e9a77",
+        "model": "jev-1.13.0"
+      },
+      {
+        "item": "i5_formal",
+        "framing": "identity",
+        "framingType": "null",
+        "repeat": 20,
+        "requestHash": "dcb6a490530360a957a02a6bb8fe03a3c7082f4a60f27f13a2c3133381fe1a6d",
+        "score": 3,
+        "confidence": 1,
+        "probabilities": {
+          "0": 0,
+          "1": 0,
+          "2": 0,
+          "3": 1
+        },
+        "probsHash": "fe3df1ef8b7ece1cf55d8ed1792c6f1248a185c4ca5d213abbf525870c4e9a77",
+        "model": "jev-1.13.0"
+      }
+    ]
+  }
+}

@@ -1,0 +1,447 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Measuring the Instrument</title>
+<meta name="description" content="A preregistered reliability study of Jev, a calibrated judgment model. If you put a model's probability behind an if-statement, how often does the if-statement change its mind?">
+<meta name="author" content="Vincent de Boer">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Measuring the Instrument">
+<meta property="og:description" content="A preregistered reliability study of a calibrated judgment model — and the errors it caught in us.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --paper:#faf6ee;--paper-deep:#f2ebdd;--ink:#211d18;--ink-soft:#4a4238;--ink-faint:#7c7263;
+    --rule:#ddd2bd;--accent:#b3541e;--accent-deep:#8a3f14;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#17151a;--paper-deep:#1f1c22;--ink:#eae3d6;--ink-soft:#c3b8a8;--ink-faint:#8b8172;
+      --rule:#35303a;--accent:#e08a4e;--accent-deep:#f0a468;
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#17151a;--paper-deep:#1f1c22;--ink:#eae3d6;--ink-soft:#c3b8a8;--ink-faint:#8b8172;
+    --rule:#35303a;--accent:#e08a4e;--accent-deep:#f0a468;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;font-optical-sizing:auto;
+    font-size:1.2rem;line-height:1.68;-webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:42rem;margin:0 auto;padding:0 1.5rem;}
+  header.hero{padding:4.5rem 0 1rem;text-align:center;}
+  .eyebrow{
+    font-family:"Fraunces",serif;font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--accent);font-weight:600;margin:0 0 1rem;
+  }
+  h1{
+    font-family:"Fraunces",serif;font-weight:600;font-optical-sizing:auto;
+    font-size:clamp(2rem,7vw,3rem);line-height:1.04;margin:0 0 1rem;color:var(--ink);
+  }
+  .standfirst{
+    font-style:italic;color:var(--ink-soft);font-size:1.3rem;line-height:1.5;
+    max-width:32rem;margin:0 auto;
+  }
+  .byline{
+    font-family:"Fraunces",serif;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:1.6rem;
+  }
+  .hr-mark{display:flex;align-items:center;justify-content:center;gap:1rem;margin:3rem auto 2.4rem;color:var(--accent);opacity:.8;}
+  .hr-mark::before,.hr-mark::after{content:"";height:1px;width:4.5rem;background:var(--rule);}
+  .hr-mark svg{width:16px;height:16px;}
+
+  h2{
+    font-family:"Fraunces",serif;font-weight:600;font-size:1.65rem;line-height:1.15;
+    margin:3rem 0 .4rem;color:var(--ink);
+  }
+  h3{font-family:"Fraunces",serif;font-weight:600;font-size:1.18rem;margin:2rem 0 .3rem;color:var(--ink-soft);}
+  p{margin:1rem 0;}
+  a{color:var(--accent);text-decoration:none;border-bottom:1px solid var(--rule);}
+  a:hover{border-bottom-color:var(--accent);}
+  strong{font-weight:600;color:var(--ink);}
+  em{font-style:italic;}
+
+  .summary{
+    background:var(--paper-deep);border:1px solid var(--rule);border-left:3px solid var(--accent);
+    border-radius:10px;padding:1.4rem 1.6rem;margin:2.4rem 0;font-size:1.08rem;
+  }
+  .summary p{margin:.55rem 0;}
+  .summary .lead{font-family:"Fraunces",serif;font-weight:600;font-size:.74rem;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--accent);margin:0 0 .6rem;}
+
+  table{width:100%;border-collapse:collapse;margin:1.6rem 0;font-size:.98rem;
+    font-family:"Newsreader",serif;}
+  th,td{text-align:left;padding:.5rem .6rem;border-bottom:1px solid var(--rule);vertical-align:top;}
+  th{font-family:"Fraunces",serif;font-weight:600;font-size:.82rem;letter-spacing:.06em;
+    text-transform:uppercase;color:var(--ink-faint);}
+  td.num,th.num{font-family:"JetBrains Mono",monospace;font-size:.86rem;white-space:nowrap;}
+
+  pre{
+    background:var(--paper-deep);border:1px solid var(--rule);border-radius:8px;
+    padding:1rem 1.1rem;overflow-x:auto;font-family:"JetBrains Mono",monospace;
+    font-size:.82rem;line-height:1.6;color:var(--ink-soft);
+  }
+  code{font-family:"JetBrains Mono",monospace;font-size:.86em;background:var(--paper-deep);
+    padding:.1em .35em;border-radius:4px;}
+  pre code{background:none;padding:0;font-size:1em;}
+
+  .callout{
+    border-left:3px solid var(--rule);padding:.2rem 0 .2rem 1.2rem;margin:1.6rem 0;
+    color:var(--ink-soft);font-style:italic;
+  }
+  .miss{border-left-color:var(--accent);}
+
+  .refs{margin-top:1rem;font-size:.95rem;color:var(--ink-soft);}
+  .refs ol{padding-left:1.2rem;}
+  .refs li{margin:.7rem 0;}
+  .refs .title{font-style:italic;}
+  sup a{border-bottom:none;font-family:"JetBrains Mono",monospace;font-size:.72em;}
+
+  .home-return{text-align:center;margin:3.5rem 0 1rem;}
+  .home-return a{font-family:"Fraunces",serif;font-size:.84rem;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--ink-faint);border-bottom:none;}
+  .home-return a:hover{color:var(--accent);}
+  footer{text-align:center;padding:2rem 0 4rem;font-family:"Fraunces",serif;
+    font-size:.8rem;letter-spacing:.06em;color:var(--ink-faint);}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="hero">
+    <p class="eyebrow">Measurement · 2026</p>
+    <h1>Measuring the Instrument</h1>
+    <p class="standfirst">A judgment model is sold as something you can put behind an
+      <code>if</code>. So we measured what happens to the <code>if</code>.</p>
+    <p class="byline">Vincent de Boer · September 2026</p>
+  </header>
+
+  <div class="hr-mark" aria-hidden="true">
+    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="3" fill="currentColor"/></svg>
+  </div>
+
+  <div class="summary">
+    <p class="lead">Summary</p>
+    <p>We ran 1,252 calls against a single pinned version of Jev, to a design fixed in
+      advance, and
+      treated it as an instrument to be characterised, the way you would characterise a
+      plate reader before trusting a plate.</p>
+    <p>It is not deterministic, but only where the answer is genuinely uncertain.
+      Rewording a question moves the answer more than random noise does. The scale
+      saturates, so a large fraction of any corpus cannot be ranked at all. A fixed
+      threshold can flip on byte-identical input. And the model will confidently rate
+      text that has nothing to rate — which its own confidence score cannot detect, and
+      a second question can.</p>
+    <p>It also caught three errors in our own study, one of which had survived repeated
+      code review, and the model that finally fit the data dissolved a result we had
+      already published to ourselves.</p>
+  </div>
+
+  <h2>What Jev is</h2>
+
+  <p>Most of what the last four years called "AI" writes text. Jev does not. It belongs
+    to a different category — judgment models, or what its makers call System&nbsp;One
+    models — and instead of prose it returns a number.<sup><a href="#fn1" id="fnref1">1</a></sup></p>
+
+  <p>Ask it <em>does this customer sound angry?</em> and you get <code>0.9</code>. Not a
+    paragraph explaining that the customer sounds angry: the probability itself. Where an
+    ordinary language model is trained to produce responses people prefer, this one is
+    trained to produce <em>calibrated decisions</em> — probabilities meant to be honest
+    about their own uncertainty.</p>
+
+  <p>That single property is the whole point, because it makes the output something code
+    can consume. A chat model handed the same question replies "You're absolutely right,
+    this customer does sound very angry — would you like me to draft a response?", which
+    crashes a program expecting a number between zero and one. Three shapes are
+    available: a yes/no probability, a choice among options you define, and a score
+    across ordered levels.</p>
+
+  <p>The practical framing that has stuck is that most software is a large tree of
+    <em>if this, do that</em> — route here, escalate that, reject the other — and a
+    judgment model lets those branches read messy human context instead of fixed rules.
+    It is fast and cheap enough to sit inside the branch rather than beside it: hundreds
+    of judgments in under a second, for a fraction of a cent.</p>
+
+  <p>Which is exactly why it is worth measuring. A number you merely read is one thing.
+    A number you put behind an <code>if</code> is a different thing, because now its
+    wobble becomes your program's behaviour.</p>
+
+  <h2>Why measure at all</h2>
+
+  <p>Two people have already built serious systems on Jev and published what they found.
+    One put it behind a TLA<sup>+</sup> specification and ran 1,680 chaos-tested pharmacy
+    decisions, reporting no confidently wrong verdicts and measuring the model's noise
+    floor across 1,490 captured calls.<sup><a href="#fn2" id="fnref2">2</a></sup> Another
+    put it in front of an on-call alert queue as a cheap screen before an expensive
+    model, reporting roughly 99.9% lower screening cost.<sup><a href="#fn3" id="fnref3">3</a></sup></p>
+
+  <p>Both did their own measurement, by hand, and both hit the same wall from opposite
+    directions — a stability gate can detect that a value is jittering, but not that no
+    value is warranted at all.</p>
+
+  <p>The vendor documentation says to validate performance in your target domain. It does
+    not say how. The published cookbooks pick thresholds by assertion. So the gap is not
+    that nobody is measuring; it is that everybody is measuring privately, once, and
+    throwing the apparatus away.</p>
+
+  <h2>Method: a plate reader for text</h2>
+
+  <p>There is an existing framework for exactly this problem, and it comes from
+    mitochondrial physiology. OCRbayes models oxygen consumption measurements as a
+    quantity observed with noise at three nested levels — repeated reads of one well,
+    replicate wells on a plate, replicate plates — and estimates how much variation each
+    level contributes.<sup><a href="#fn4" id="fnref4">4</a></sup></p>
+
+  <p>A Jev call maps onto that structure directly. One call is one assay:</p>
+
+  <table>
+    <thead><tr><th>Assay facet</th><th>Jev equivalent</th></tr></thead>
+    <tbody>
+      <tr><td>repeated reads of one well</td><td>repeat calls, byte-identical request</td></tr>
+      <tr><td>replicate wells on a plate</td><td>a change that cannot alter a correct answer</td></tr>
+      <tr><td>replicate plates</td><td>the item being judged</td></tr>
+    </tbody>
+  </table>
+
+  <p>The middle level is where the design does its work, and it is deliberately split in
+    two. <strong>Null perturbations</strong> are changes that cannot alter a correct
+    answer: trailing whitespace, reordering keys in the request body, adding an
+    irrelevant field. Variance there is unambiguously instrument noise.
+    <strong>Paraphrases</strong> are rewordings intended to ask the same question.
+    Variance there is noise <em>plus</em> any drift in what is actually being asked.</p>
+
+  <p>Two wells on a plate measure the same quantity. Two phrasings of a question might
+    not. Keeping them apart, and never pooling them, is what lets their contrast separate
+    "the instrument is noisy" from "you changed the question".</p>
+
+  <p>The design, the predicted outcomes, and the conditions that would count as
+    falsification were written down and committed to version control before any data was
+    collected. Every later change is recorded as a numbered deviation, including the ones
+    that went against us. That discipline is the only reason the errors described below
+    are legible rather than invisible.</p>
+
+  <h2>What we found</h2>
+
+  <h3>It is not deterministic — but only in the middle</h3>
+
+  <p>Sending byte-identical request bodies twenty times, items at the extremes of the
+    scale returned one identical distribution every time. Items in the middle returned up
+    to sixteen different distributions in twenty calls.</p>
+
+  <p>This is the finding that nearly escaped. Had the test used only clear-cut examples —
+    the obvious thing to do — it would have concluded the model was deterministic and
+    been wrong. Determinism at saturation is trivially satisfied; the sensitive test is
+    where the answer is genuinely uncertain, which is also the only place the answer is
+    interesting.</p>
+
+  <h3>Three tiers of variation</h3>
+
+  <p>Across 480 calls over thirty items, eight framings and two repeats:</p>
+
+  <table>
+    <thead><tr><th>Source of variation</th><th class="num">sd (0–3 scale)</th></tr></thead>
+    <tbody>
+      <tr><td>repeating the identical request</td><td class="num">0.0102</td></tr>
+      <tr><td>a semantically null perturbation</td><td class="num">0.0204</td></tr>
+      <tr><td>rewording the question</td><td class="num">0.0347</td></tr>
+    </tbody>
+  </table>
+
+  <p>Two things follow. Rewording moves the answer most — the phrasing of your question
+    is part of your measurement, and should be versioned like code. But also:
+    <strong>a null perturbation is not free</strong>. Adding an irrelevant field to a
+    request moves the answer about twice as much as simply asking again does. Nothing in
+    the request is inert.</p>
+
+  <h3>The scale saturates, so much of a corpus cannot be ranked</h3>
+
+  <p>Of thirty items, thirteen returned <em>exactly</em> identical values — six pinned at
+    the floor, seven at the ceiling. Within those groups there is no ordering to recover.
+    Accounting for noise, 17.0% of all item pairs were statistically indistinguishable.</p>
+
+  <p>A ranking built on this would present a confident, complete ordering in which roughly
+    one pair in six is a coin flip, and two large blocks are arbitrary.</p>
+
+  <h3>A fixed threshold can flip on identical input</h3>
+
+  <p>One item returned confidence ranging from 0.46 to 0.53 across repeated
+    byte-identical requests. Any gate written <code>confidence &gt;= 0.5</code> flips
+    between runs with nothing whatsoever changed.</p>
+
+  <p>The decision itself is more robust than the number: across every study the modal
+    answer almost never moved. It is the <em>threshold</em>, not the judgment, that is
+    fragile — which matters, because thresholds are how these models get wired into
+    software.</p>
+
+  <p>On a gate-shaped question we measured this directly as a flip rate:</p>
+
+  <table>
+    <thead><tr><th>Condition</th><th class="num">Decisions that change</th></tr></thead>
+    <tbody>
+      <tr><td>same request, repeated</td><td class="num">0.0%</td></tr>
+      <tr><td>question reworded</td><td class="num">12.5%</td></tr>
+    </tbody>
+  </table>
+
+  <h3>It will confidently rate things that have nothing to rate</h3>
+
+  <p>Asked how formal the single word <code>yes</code> is, the model answered with
+    <strong>98% confidence</strong> that it was maximally casual writing. Asked a second,
+    separate question — <em>is there actually enough here to judge?</em> — it answered
+    <strong>2%</strong>.</p>
+
+  <p>Across twenty items split between real prose and things that are not writing at all
+    (a bare number, a URL, a base64 blob), the answerability question separated the two
+    classes perfectly; confidence did not. It fails in both directions: a list of
+    mathematical constants was rated more formal than a release note, while genuine prose
+    drew low confidence and would have been escalated for no reason.</p>
+
+  <p>These are different questions. Confidence asks <em>is the level determined?</em>
+    Answerability asks <em>is there anything to level?</em> A stability gate structurally
+    cannot detect the second, which is the wall both earlier projects hit.</p>
+
+  <h2>What we got wrong</h2>
+
+  <p>Four errors, kept here because they are the most useful part of the study.</p>
+
+  <p><strong>A control that was not a control.</strong> One "null perturbation" reordered
+    the keys of the request body — except that the transform sorted the keys and then
+    reversed them, which for a two-field object returns the original order. It was
+    byte-identical to the control, for the entire collection. It survived several careful
+    readings. It was caught only when the tool began hashing every request body and
+    comparing, at which point it was obvious and instant.</p>
+
+  <p class="callout miss">Fixing it more than doubled the measured noise from null
+    perturbations, and reversed a published conclusion: we had reported that null changes
+    were indistinguishable from simply repeating a call. They are not.</p>
+
+  <p><strong>A prediction that came out backwards.</strong> We argued in advance that
+    over-sampling hard, mid-scale items would make the reliability estimate conservative.
+    The opposite happened — the saturated items dominate the between-item variance and
+    make reliability look better than it is.</p>
+
+  <p><strong>A recommendation that was simply wrong.</strong> Early on, reasoning from the
+    assay analogy, we proposed accumulating evidence across repeated calls the way a lab
+    accumulates independent assays. Repeated calls are not independent assays. They are
+    one opinion sampled repeatedly, and pooling them would have manufactured precision
+    about the model's opinion while saying nothing about the truth. The pharmacy project
+    reached the same conclusion from its own data: five agents on one prompt are one
+    agent.<sup><a href="#fn2">2</a></sup></p>
+
+  <p><strong>A result that dissolved under a better model.</strong> The variance model
+    assumed every item is equally sensitive to rewording. It failed its own predictive
+    check in every collection, because two of fourteen items are far more sensitive than
+    the rest. Refitting with a heavy-tailed model fixed the fit — and the difference
+    between paraphrase and null variance, which the first model declared established,
+    became consistent with zero.</p>
+
+  <table>
+    <thead><tr><th>Model</th><th class="num">Predictive check</th><th class="num">Paraphrase drift</th></tr></thead>
+    <tbody>
+      <tr><td>equal sensitivity</td><td class="num">fails</td><td class="num">0.0022 [0.0007, 0.0041]</td></tr>
+      <tr><td>heavy-tailed</td><td class="num">passes</td><td class="num">0.0004 [0.0000, 0.0011]</td></tr>
+    </tbody>
+  </table>
+
+  <p>The honest reading is not that rewording is harmless. It is that
+    <strong>the risk is concentrated rather than uniform</strong>: most questions barely
+    move under rewording, and a minority move a great deal. Which means no single "noise
+    floor" number describes it — the average is not a typical value, and the tail is what
+    reaches production.</p>
+
+  <h2>Where this agrees with others</h2>
+
+  <p>The pharmacy project measured three noise floors on the same model version and found
+    them ordered: repeating a request &lt; reordering a question &lt; paraphrasing
+    it.<sup><a href="#fn2">2</a></sup> Our corrected data reproduces that ordering and
+    lands at a paraphrase-to-perturbation ratio of 1.70 against their 1.74 — two different
+    designs, different questions, the same structure.</p>
+
+  <p>Notably, our <em>uncorrected</em> data did not reproduce it: the broken control had
+    collapsed two of the three tiers into one. The external comparison would have caught
+    the bug even if our own tooling had not.</p>
+
+  <h2>What this cannot tell you</h2>
+
+  <p>Nothing about accuracy. Every measurement here is about whether the model is
+    <em>consistent</em>, never whether it is <em>right</em>. A perfectly repeatable
+    question can be repeatably wrong, and this design could not tell. The pharmacy project
+    did test correctness against labels; that is a different study and a necessary one.</p>
+
+  <p>Everything is one model version, a small number of questions, and a few dozen items.
+    The specific numbers do not transfer. The method does.</p>
+
+  <h2>The apparatus</h2>
+
+  <p>The measurements are a swamp extension, so the apparatus outlives the study rather
+    than being thrown away with it. You give it a question and some items; it returns a
+    verdict on whether that question is safe to build on.</p>
+
+  <pre><code>swamp extension pull @vcjdeboer/jev-reliability
+
+swamp model method run @vcjdeboer/jev-reliability check myquestion \
+  --input-file myquestion.json
+
+swamp report get @vcjdeboer/jev-reliability-report --model myquestion</code></pre>
+
+  <p>It reports the decision flip rate, the tie structure, threshold stability,
+    answerability, and a nested variance decomposition — and it refuses to print the
+    posterior when the fit has not converged, rather than printing numbers you should not
+    read. It does not take your paraphrases on trust: it hashes every request body and
+    declines to count a perturbation that produced an identical request. That check is
+    what found the broken control above.</p>
+
+  <p>The code, the raw data from every study, the preregistration and all deviations are
+    in the repository.</p>
+
+  <div class="hr-mark" aria-hidden="true">
+    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="3" fill="currentColor"/></svg>
+  </div>
+
+  <section class="refs">
+    <h2>References</h2>
+    <ol>
+      <li id="fn1">TypeSafe. <span class="title">Jev — System One models.</span>
+        Documentation and primitives.
+        <a href="https://docs.typesafe.ai">docs.typesafe.ai</a>
+        <a href="#fnref1" aria-label="Back to text">↩</a></li>
+      <li id="fn2">copyleftdev (2026). <span class="title">I Put Jev Behind a TLA+ Spec
+        and Ran 1,680 Chaos-Tested Pharmacy Decisions. Zero Wrong Verdicts.</span>
+        <a href="https://dev.to/copyleftdev/i-put-jev-behind-a-tla-spec-and-ran-1680-chaos-tested-pharmacy-decisions-zero-wrong-verdicts-1ij8">dev.to</a>
+        · code at <a href="https://github.com/copyleftdev/jev-labs">github.com/copyleftdev/jev-labs</a>
+        <a href="#fnref2" aria-label="Back to text">↩</a></li>
+      <li id="fn3">Watson Labs (2026). <span class="title">Cutting alert fatigue with
+        TypeSafe AI.</span>
+        <a href="https://blog.watson-labs.co.uk/typesafe-ai-alert-fatigue/">blog.watson-labs.co.uk</a>
+        <a href="#fnref3" aria-label="Back to text">↩</a></li>
+      <li id="fn4">Zhang, Y., Yuan, F., Keijer, J., &amp; de Boer, V.C.J. (2021).
+        <span class="title">OCRbayes: A Bayesian hierarchical modeling framework for
+        Seahorse extracellular flux oxygen consumption rate data analysis.</span>
+        PLOS ONE 16(8): e0253926.
+        <a href="https://doi.org/10.1371/journal.pone.0253926">doi:10.1371/journal.pone.0253926</a>
+        <a href="#fnref4" aria-label="Back to text">↩</a></li>
+    </ol>
+  </section>
+
+  <div class="home-return">
+    <a href="https://vcjdeboer.github.io/">← vcjdeboer.github.io</a>
+  </div>
+</div>
+
+<footer>
+  <p>© Vincent de Boer · CC&nbsp;BY&nbsp;4.0</p>
+</footer>
+
+<script>
+  (function(){ try{ var t=localStorage.getItem('theme'); if(t) document.documentElement.setAttribute('data-theme',t);}catch(e){} })();
+</script>
+
+</body>
+</html>

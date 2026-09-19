@@ -1,0 +1,468 @@
+# Jev question pre-flight
+
+Is this question safe to build on? Each section answers one thing you need
+settled before shipping a Jev-backed feature.
+
+## tier0-determinism
+
+jev-1.13.0 · score question · 2026-09-19T15:49:25.296Z · 5 items × 1 framings ×
+20 repeats = 100 calls (100 ok, 0 failed)
+
+### Headline — decision flip rate
+
+If you reran this question, how often would the decision your code acts on come
+out differently?
+
+┌────────────────────────┬───────────┐
+│ condition              │ flip rate │
+├────────────────────────┼───────────┤
+│ same request, repeated │ 0.0%      │
+├────────────────────────┼───────────┤
+│ overall                │ 0.0%      │
+└────────────────────────┴───────────┘
+
+No item ever changed its decision.
+
+### Verdict
+
+    * **2 item(s) have confidence straddling a common cut-off on IDENTICAL input — a fixed threshold will flip run to run.**
+    * **No answerability question was asked. Confidence cannot detect "there is nothing here to judge" — ask a separate Noul for it.**
+
+### 1. Repeatability
+
+Identical requests: 2 item(s) returned a byte-identical distribution every time,
+3 did not. Pooled within-cell sd: 0.0178. Modal answer moved for 0 of 5 items.
+
+### 3. Resolution — can this question rank your items?
+
+5 distinct values across 5 items. Two items are separable only if they differ by
+more than 0.049. Indistinguishable pairs: 0/10 (0.0%).
+
+### 4. Threshold stability
+
+┌──────────────────┬──────────────────┐
+│ item             │ confidence range │
+├──────────────────┼──────────────────┤
+│ i2_relaxed       │ 0.660 – 0.710    │
+├──────────────────┼──────────────────┤
+│ i4_mid_ambiguous │ 0.460 – 0.530    │
+└──────────────────┴──────────────────┘
+
+These straddle a common cut-off on identical input. A fixed threshold flips
+between runs.
+
+### What this cannot tell you
+
+    * **Nothing about accuracy.** This measures whether the question is *consistent*, never whether it is *right*. A perfectly repeatable question can be repeatably wrong. Checking that needs labelled data.
+    * Results apply to this question, this model version and these items only.
+
+## tier12-framing
+
+jev-1.13.0 · score question · 2026-09-19T15:56:17.414Z · 30 items × 8 framings ×
+2 repeats = 480 calls (480 ok, 0 failed)
+
+### Headline — decision flip rate
+
+If you reran this question, how often would the decision your code acts on come
+out differently?
+
+┌────────────────────────┬───────────┐
+│ condition              │ flip rate │
+├────────────────────────┼───────────┤
+│ same request, repeated │ 0.0%      │
+├────────────────────────┼───────────┤
+│ question reworded      │ 0.4%      │
+├────────────────────────┼───────────┤
+│ overall                │ 0.2%      │
+└────────────────────────┴───────────┘
+
+1 item(s) changed decision at least once: m6.
+
+### Verdict
+
+    * **13 of 30 items are EXACT ties — they cannot be ranked against each other at all. Any ordering shown among them is arbitrary.**
+    * **Rewording the question moves answers 3.7x more than semantically-null changes do. The exact phrasing is part of your measurement — version it.**
+    * **76/435 item pairs (17.5%) are closer together than the noise. Ranking them is coin-flipping.**
+    * **9 item(s) have confidence straddling a common cut-off on IDENTICAL input — a fixed threshold will flip run to run.**
+    * **No answerability question was asked. Confidence cannot detect "there is nothing here to judge" — ask a separate Noul for it.**
+    * **1 framing(s) produced a BYTE-IDENTICAL request to another and therefore measured nothing: key_reorder == identity. They pad the framing count without adding information.**
+    * **Decision flip rate 0.2% — that share of calls disagrees with its own item's most common decision.**
+
+### 1. Repeatability
+
+Identical requests: 21 item(s) returned a byte-identical distribution every
+time, 9 did not. Pooled within-cell sd: 0.0105. Modal answer moved for 1 of 30
+items.
+
+### 2. Framing sensitivity
+
+┌──────────────────────────┬────────┐
+│ source                   │ sd     │
+├──────────────────────────┼────────┤
+│ semantically-null change │ 0.0100 │
+├──────────────────────────┼────────┤
+│ paraphrase               │ 0.0371 │
+├──────────────────────────┼────────┤
+│ repeat noise             │ 0.0105 │
+└──────────────────────────┴────────┘
+
+Paraphrase moves the answer 3.7× more than a null change.
+
+### 3. Resolution — can this question rank your items?
+
+19 distinct values across 30 items. Two items are separable only if they differ
+by more than 0.103. Indistinguishable pairs: 76/435 (17.5%).
+
+Exact ties (identical value — unrankable):
+
+    * `0.0000` — c1_link_tier0, c2, c3, c4, c7, c8
+    * `3.0000` — f1_link_tier0, f2, f3, f4, f5, f6, f8
+
+### 4. Threshold stability
+
+┌───────────────┬──────────────────┐
+│ item          │ confidence range │
+├───────────────┼──────────────────┤
+│ m1_link_tier0 │ 0.620 – 0.730    │
+├───────────────┼──────────────────┤
+│ m2_link_tier0 │ 0.790 – 0.870    │
+├───────────────┼──────────────────┤
+│ m3_link_tier0 │ 0.440 – 0.520    │
+├───────────────┼──────────────────┤
+│ m5            │ 0.640 – 0.760    │
+├───────────────┼──────────────────┤
+│ m6            │ 0.360 – 0.700    │
+├───────────────┼──────────────────┤
+│ m8            │ 0.460 – 0.570    │
+├───────────────┼──────────────────┤
+│ m10           │ 0.760 – 0.880    │
+├───────────────┼──────────────────┤
+│ m11           │ 0.580 – 0.700    │
+├───────────────┼──────────────────┤
+│ m12           │ 0.790 – 0.890    │
+└───────────────┴──────────────────┘
+
+These straddle a common cut-off on identical input. A fixed threshold flips
+between runs.
+
+### 6. Bayesian variance decomposition
+
+Nested measurement model (repeat → framing → item), 4 chains × 40000 iterations.
+16 saturated item(s) excluded — pinned at a scale end, they carry no variance
+information and inflate the between-item term. These components therefore
+describe the unsaturated region only.
+
+Convergence gate: max R̂ 1.0032 (< 1.01), min ESS **973** (> 400) — PASS
+
+┌────────────────────────────┬─────────┬────────────────────┬────────┬───────┐
+│ component                  │ mean    │ 95% CI             │ R̂      │ ESS   │
+├────────────────────────────┼─────────┼────────────────────┼────────┼───────┤
+│ grand mean                 │ 1.61041 │ [1.32549, 1.89070] │ 1.0030 │ 2672  │
+├────────────────────────────┼─────────┼────────────────────┼────────┼───────┤
+│ between items              │ 0.52419 │ [0.35444, 0.79849] │ 1.0002 │ 28302 │
+├────────────────────────────┼─────────┼────────────────────┼────────┼───────┤
+│ framing main effect        │ 0.01345 │ [0.00266, 0.03332] │ 1.0008 │ 4903  │
+├────────────────────────────┼─────────┼────────────────────┼────────┼───────┤
+│ item x null-framing        │ 0.01037 │ [0.00165, 0.01879] │ 1.0032 │ 973   │
+├────────────────────────────┼─────────┼────────────────────┼────────┼───────┤
+│ item x paraphrase          │ 0.05878 │ [0.04758, 0.07256] │ 1.0001 │ 42906 │
+├────────────────────────────┼─────────┼────────────────────┼────────┼───────┤
+│ repeat (residual)          │ 0.02220 │ [0.01947, 0.02530] │ 1.0005 │ 7321  │
+├────────────────────────────┼─────────┼────────────────────┼────────┼───────┤
+│ construct drift (variance) │ 0.00337 │ [0.00212, 0.00514] │ 1.0001 │ 40038 │
+├────────────────────────────┼─────────┼────────────────────┼────────┼───────┤
+│ reliability G              │ 0.99744 │ [0.99481, 0.99908] │ 1.0002 │ 21770 │
+└────────────────────────────┴─────────┴────────────────────┴────────┴───────┘
+
+Construct drift is established: the 95% interval [0.00212, 0.00514] excludes
+zero. Rewording this question changes what it measures.
+
+### What this cannot tell you
+
+    * **Nothing about accuracy.** This measures whether the question is *consistent*, never whether it is *right*. A perfectly repeatable question can be repeatably wrong. Checking that needs labelled data.
+    * Results apply to this question, this model version and these items only.
+
+## answerability
+
+jev-1.13.0 · score question · 2026-09-19T16:05:57.324Z · 20 items × 1 framings ×
+4 repeats = 80 calls (80 ok, 0 failed)
+
+### Headline — decision flip rate
+
+If you reran this question, how often would the decision your code acts on come
+out differently?
+
+┌────────────────────────┬───────────┐
+│ condition              │ flip rate │
+├────────────────────────┼───────────┤
+│ same request, repeated │ 0.0%      │
+├────────────────────────┼───────────┤
+│ overall                │ 0.0%      │
+└────────────────────────┴───────────┘
+
+No item ever changed its decision.
+
+### Verdict
+
+    * **5 of 20 items are EXACT ties — they cannot be ranked against each other at all. Any ordering shown among them is arbitrary.**
+    * **2 item(s) have confidence straddling a common cut-off on IDENTICAL input — a fixed threshold will flip run to run.**
+    * **1 item(s) are rated CONFIDENTLY but score low on answerability — the model is confidently judging something with nothing to judge.**
+
+### 1. Repeatability
+
+Identical requests: 5 item(s) returned a byte-identical distribution every time,
+15 did not. Pooled within-cell sd: 0.0214. Modal answer moved for 0 of 20 items.
+
+### 3. Resolution — can this question rank your items?
+
+17 distinct values across 20 items. Two items are separable only if they differ
+by more than 0.059. Indistinguishable pairs: 9/190 (4.7%).
+
+Exact ties (identical value — unrankable):
+
+    * `0.0000` — j01, j06
+    * `3.0000` — j04, j05, j08
+
+### 4. Threshold stability
+
+┌──────┬──────────────────┐
+│ item │ confidence range │
+├──────┼──────────────────┤
+│ j09  │ 0.470 – 0.520    │
+├──────┼──────────────────┤
+│ u06  │ 0.380 – 0.500    │
+└──────┴──────────────────┘
+
+These straddle a common cut-off on identical input. A fixed threshold flips
+between runs.
+
+### 5. Answerability
+
+Asked for 20 items; range 0.020 – 0.980.
+
+Confident but nothing to judge:
+
+┌──────┬────────────┬────────────┐
+│ item │ confidence │ answerable │
+├──────┼────────────┼────────────┤
+│ u03  │ 0.983      │ 0.020      │
+└──────┴────────────┴────────────┘
+
+### What this cannot tell you
+
+    * **Nothing about accuracy.** This measures whether the question is *consistent*, never whether it is *right*. A perfectly repeatable question can be repeatably wrong. Checking that needs labelled data.
+    * Results apply to this question, this model version and these items only.
+
+## noul-gate
+
+jev-1.13.0 · noul question · 2026-09-19T17:05:50.921Z · 8 items × 7 framings × 2
+repeats = 112 calls (112 ok, 0 failed)
+
+### Headline — decision flip rate
+
+If you reran this question, how often would the decision your code acts on come
+out differently?
+
+┌────────────────────────┬───────────┐
+│ condition              │ flip rate │
+├────────────────────────┼───────────┤
+│ same request, repeated │ 0.0%      │
+├────────────────────────┼───────────┤
+│ question reworded      │ 12.5%     │
+├────────────────────────┼───────────┤
+│ overall                │ 3.6%      │
+└────────────────────────┴───────────┘
+
+1 item(s) changed decision at least once: a2.
+
+### Verdict
+
+    * **Rewording the question moves answers 5.1x more than semantically-null changes do. The exact phrasing is part of your measurement — version it.**
+    * **3/28 item pairs (10.7%) are closer together than the noise. Ranking them is coin-flipping.**
+    * **1 framing(s) produced a BYTE-IDENTICAL request to another and therefore measured nothing: quote_style == identity. They pad the framing count without adding information.**
+    * **Decision flip rate 3.6% — that share of calls disagrees with its own item's most common decision.**
+
+### 1. Repeatability
+
+Identical requests: 8 item(s) returned a byte-identical distribution every time,
+0 did not. Pooled within-cell sd: 0.0036. Modal answer moved for 0 of 8 items.
+
+### 2. Framing sensitivity
+
+┌──────────────────────────┬────────┐
+│ source                   │ sd     │
+├──────────────────────────┼────────┤
+│ semantically-null change │ 0.0018 │
+├──────────────────────────┼────────┤
+│ paraphrase               │ 0.0093 │
+├──────────────────────────┼────────┤
+│ repeat noise             │ 0.0036 │
+└──────────────────────────┴────────┘
+
+Paraphrase moves the answer 5.1× more than a null change.
+
+### 3. Resolution — can this question rank your items?
+
+8 distinct values across 8 items. Two items are separable only if they differ by
+more than 0.026. Indistinguishable pairs: 3/28 (10.7%).
+
+### 5. Answerability
+
+Asked for 8 items; range 0.394 – 0.971.
+
+### 6. Bayesian variance decomposition
+
+Nested measurement model (repeat → framing → item), 4 chains × 60000 iterations.
+0 saturated item(s) excluded — pinned at a scale end, they carry no variance
+information and inflate the between-item term. These components therefore
+describe the unsaturated region only.
+
+Convergence gate: max R̂ 1.0027 (< 1.01), min ESS **1176** (> 400) — PASS
+
+┌────────────────────────────┬─────────┬────────────────────┬────────┬────────┐
+│ component                  │ mean    │ 95% CI             │ R̂      │ ESS    │
+├────────────────────────────┼─────────┼────────────────────┼────────┼────────┤
+│ grand mean                 │ 0.37751 │ [0.03450, 0.76071] │ 1.0024 │ 2576   │
+├────────────────────────────┼─────────┼────────────────────┼────────┼────────┤
+│ between items              │ 0.48950 │ [0.28083, 0.88974] │ 1.0004 │ 14648  │
+├────────────────────────────┼─────────┼────────────────────┼────────┼────────┤
+│ framing main effect        │ 0.00132 │ [0.00004, 0.00493] │ 1.0023 │ 4107   │
+├────────────────────────────┼─────────┼────────────────────┼────────┼────────┤
+│ item x null-framing        │ 0.00121 │ [0.00005, 0.00309] │ 1.0027 │ 1176   │
+├────────────────────────────┼─────────┼────────────────────┼────────┼────────┤
+│ item x paraphrase          │ 0.04401 │ [0.03063, 0.06489] │ 1.0001 │ 112329 │
+├────────────────────────────┼─────────┼────────────────────┼────────┼────────┤
+│ repeat (residual)          │ 0.00501 │ [0.00428, 0.00588] │ 1.0001 │ 37963  │
+├────────────────────────────┼─────────┼────────────────────┼────────┼────────┤
+│ construct drift (variance) │ 0.00201 │ [0.00094, 0.00421] │ 1.0001 │ 103827 │
+├────────────────────────────┼─────────┼────────────────────┼────────┼────────┤
+│ reliability G              │ 0.99985 │ [0.99964, 0.99997] │ 1.0003 │ 25143  │
+└────────────────────────────┴─────────┴────────────────────┴────────┴────────┘
+
+Construct drift is established: the 95% interval [0.00094, 0.00421] excludes
+zero. Rewording this question changes what it measures.
+
+### What this cannot tell you
+
+    * **Nothing about accuracy.** This measures whether the question is *consistent*, never whether it is *right*. A perfectly repeatable question can be repeatably wrong. Checking that needs labelled data.
+    * Results apply to this question, this model version and these items only.
+
+## tier12-framing-fixed
+
+jev-1.13.0 · score question · 2026-09-19T17:12:09.080Z · 30 items × 8 framings ×
+2 repeats = 480 calls (480 ok, 0 failed)
+
+### Headline — decision flip rate
+
+If you reran this question, how often would the decision your code acts on come
+out differently?
+
+┌────────────────────────┬───────────┐
+│ condition              │ flip rate │
+├────────────────────────┼───────────┤
+│ same request, repeated │ 0.0%      │
+├────────────────────────┼───────────┤
+│ question reworded      │ 0.0%      │
+├────────────────────────┼───────────┤
+│ overall                │ 0.0%      │
+└────────────────────────┴───────────┘
+
+No item ever changed its decision.
+
+### Verdict
+
+    * **13 of 30 items are EXACT ties — they cannot be ranked against each other at all. Any ordering shown among them is arbitrary.**
+    * **Rewording the question moves answers 1.7x more than semantically-null changes do. The exact phrasing is part of your measurement — version it.**
+    * **74/435 item pairs (17.0%) are closer together than the noise. Ranking them is coin-flipping.**
+    * **6 item(s) have confidence straddling a common cut-off on IDENTICAL input — a fixed threshold will flip run to run.**
+    * **No answerability question was asked. Confidence cannot detect "there is nothing here to judge" — ask a separate Noul for it.**
+
+### 1. Repeatability
+
+Identical requests: 19 item(s) returned a byte-identical distribution every
+time, 11 did not. Pooled within-cell sd: 0.0102. Modal answer moved for 0 of 30
+items.
+
+### 2. Framing sensitivity
+
+┌──────────────────────────┬────────┐
+│ source                   │ sd     │
+├──────────────────────────┼────────┤
+│ semantically-null change │ 0.0204 │
+├──────────────────────────┼────────┤
+│ paraphrase               │ 0.0347 │
+├──────────────────────────┼────────┤
+│ repeat noise             │ 0.0102 │
+└──────────────────────────┴────────┘
+
+Paraphrase moves the answer 1.7× more than a null change.
+
+### 3. Resolution — can this question rank your items?
+
+19 distinct values across 30 items. Two items are separable only if they differ
+by more than 0.096. Indistinguishable pairs: 74/435 (17.0%).
+
+Exact ties (identical value — unrankable):
+
+    * `0.0000` — c1_link_tier0, c2, c3, c4, c7, c8
+    * `3.0000` — f1_link_tier0, f2, f3, f4, f5, f6, f8
+
+### 4. Threshold stability
+
+┌───────────────┬──────────────────┐
+│ item          │ confidence range │
+├───────────────┼──────────────────┤
+│ m1_link_tier0 │ 0.610 – 0.730    │
+├───────────────┼──────────────────┤
+│ m3_link_tier0 │ 0.430 – 0.550    │
+├───────────────┼──────────────────┤
+│ m5            │ 0.640 – 0.760    │
+├───────────────┼──────────────────┤
+│ m6            │ 0.470 – 0.700    │
+├───────────────┼──────────────────┤
+│ m8            │ 0.460 – 0.560    │
+├───────────────┼──────────────────┤
+│ m10           │ 0.790 – 0.870    │
+└───────────────┴──────────────────┘
+
+These straddle a common cut-off on identical input. A fixed threshold flips
+between runs.
+
+### 6. Bayesian variance decomposition
+
+Nested measurement model (repeat → framing → item), 4 chains × 60000 iterations.
+16 saturated item(s) excluded — pinned at a scale end, they carry no variance
+information and inflate the between-item term. These components therefore
+describe the unsaturated region only.
+
+Convergence gate: max R̂ 1.0008 (< 1.01), min ESS **4121** (> 400) — PASS
+
+┌────────────────────────────┬─────────┬────────────────────┬────────┬───────┐
+│ component                  │ mean    │ 95% CI             │ R̂      │ ESS   │
+├────────────────────────────┼─────────┼────────────────────┼────────┼───────┤
+│ grand mean                 │ 1.60726 │ [1.33082, 1.88151] │ 1.0005 │ 4121  │
+├────────────────────────────┼─────────┼────────────────────┼────────┼───────┤
+│ between items              │ 0.51976 │ [0.35137, 0.79347] │ 1.0001 │ 34843 │
+├────────────────────────────┼─────────┼────────────────────┼────────┼───────┤
+│ framing main effect        │ 0.00810 │ [0.00034, 0.02508] │ 1.0008 │ 4470  │
+├────────────────────────────┼─────────┼────────────────────┼────────┼───────┤
+│ item x null-framing        │ 0.03418 │ [0.02615, 0.04409] │ 1.0001 │ 27578 │
+├────────────────────────────┼─────────┼────────────────────┼────────┼───────┤
+│ item x paraphrase          │ 0.05770 │ [0.04643, 0.07175] │ 1.0001 │ 42895 │
+├────────────────────────────┼─────────┼────────────────────┼────────┼───────┤
+│ repeat (residual)          │ 0.02130 │ [0.01869, 0.02438] │ 1.0000 │ 56411 │
+├────────────────────────────┼─────────┼────────────────────┼────────┼───────┤
+│ construct drift (variance) │ 0.00218 │ [0.00072, 0.00406] │ 1.0001 │ 33110 │
+├────────────────────────────┼─────────┼────────────────────┼────────┼───────┤
+│ reliability G              │ 0.99315 │ [0.98573, 0.99761] │ 1.0001 │ 48560 │
+└────────────────────────────┴─────────┴────────────────────┴────────┴───────┘
+
+Construct drift is established: the 95% interval [0.00072, 0.00406] excludes
+zero. Rewording this question changes what it measures.
+
+### What this cannot tell you
+
+    * **Nothing about accuracy.** This measures whether the question is *consistent*, never whether it is *right*. A perfectly repeatable question can be repeatably wrong. Checking that needs labelled data.
+    * Results apply to this question, this model version and these items only.
+
+

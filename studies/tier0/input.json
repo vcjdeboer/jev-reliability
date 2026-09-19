@@ -1,0 +1,35 @@
+{
+  "name": "tier0-determinism",
+  "repeats": 20,
+  "nullFramings": ["identity"],
+  "paraphrases": [],
+  "instructions": "Rate the formality of this writing. Consider word choice, sentence structure, contractions, colloquialisms, and register. Academic papers and legal text sit at the formal end; blog posts, tweets, and casual chat sit at the informal end. Technical documentation lands in between.",
+  "criteria": [
+    "Casual — contractions, slang, first person, conversational asides, reads like talking to a friend",
+    "Relaxed — readable and approachable, some informality but structured, typical of good blog posts and dev docs",
+    "Professional — clean, structured prose, avoids slang but not stiff, typical of business writing and polished READMEs",
+    "Formal — precise diction, complex sentences, passive voice acceptable, typical of academic papers and official documentation"
+  ],
+  "items": [
+    {
+      "id": "i1_casual",
+      "text": "ok so I finally got the thing working lol. turns out the whole problem was a missing comma, three hours of my life gone. anyway it's pushed now, someone please review it before I do something else stupid. gonna go get coffee."
+    },
+    {
+      "id": "i2_relaxed",
+      "text": "Here's the thing about caching: it's easy to add and hard to remove. You'll get a quick win on latency, and six months later nobody remembers which layer is authoritative. If you're going to cache, write down the invalidation rule first — it's the part everyone skips."
+    },
+    {
+      "id": "i3_mid_ambiguous",
+      "text": "The service exposes a single endpoint for batch submission. Callers should retry on 5xx responses, though we'd suggest a backoff rather than a tight loop. Payloads over 10 MB are rejected. Note that ordering is not guaranteed across partitions, so don't rely on it."
+    },
+    {
+      "id": "i4_mid_ambiguous",
+      "text": "Participants were asked to keep a short daily log. We didn't standardise the format, which in hindsight made the analysis harder than it needed to be. The main finding still held: people who logged in the morning reported more consistent entries than those who logged at night."
+    },
+    {
+      "id": "i5_formal",
+      "text": "We report that mitochondrial respiratory capacity, assessed by extracellular flux analysis, was significantly attenuated in patient-derived fibroblasts relative to matched controls. The observed reduction was not attributable to differences in cell density, as confirmed by post-hoc normalisation to total protein content."
+    }
+  ]
+}

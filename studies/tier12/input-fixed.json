@@ -1,0 +1,146 @@
+{
+  "name": "tier12-framing-fixed",
+  "repeats": 2,
+  "nullFramings": [
+    "identity",
+    "trailing_ws",
+    "key_reorder",
+    "irrelevant_field"
+  ],
+  "instructions": "Rate the formality of this writing. Consider word choice, sentence structure, contractions, colloquialisms, and register. Academic papers and legal text sit at the formal end; blog posts, tweets, and casual chat sit at the informal end. Technical documentation lands in between.",
+  "paraphrases": [
+    "Judge how formal this writing is. Weigh diction, sentence construction, use of contractions, slang, and overall register. Scholarly and legal prose anchor the formal end; casual posts and chat anchor the informal end; technical documentation falls between them.",
+    "Where does this text sit on the formal-to-informal spectrum? Attend to vocabulary, syntactic complexity, whether contractions and colloquial expressions appear, and the register the author adopts. Academic and legal writing are maximally formal; tweets, chat messages and casual blogging are maximally informal; product and developer documentation sits in the middle.",
+    "Assess the register of this passage. Formal writing avoids contractions and colloquialism, favouring elaborated syntax and precise diction. Informal writing embraces contractions, everyday idiom and a conversational stance. Place this text accordingly, noting that technical documentation typically lands mid-scale.",
+    "How formal or informal is this piece of writing? Base the judgement on word choice, sentence structure, presence or absence of contractions and colloquialisms, and the register being used. Treat academic papers and legal documents as the formal extreme, and casual conversation, tweets and personal blog posts as the informal extreme, with technical documentation in between."
+  ],
+  "criteria": [
+    "Casual \u2014 contractions, slang, first person, conversational asides, reads like talking to a friend",
+    "Relaxed \u2014 readable and approachable, some informality but structured, typical of good blog posts and dev docs",
+    "Professional \u2014 clean, structured prose, avoids slang but not stiff, typical of business writing and polished READMEs",
+    "Formal \u2014 precise diction, complex sentences, passive voice acceptable, typical of academic papers and official documentation"
+  ],
+  "items": [
+    {
+      "id": "c1_link_tier0",
+      "text": "ok so I finally got the thing working lol. turns out the whole problem was a missing comma, three hours of my life gone. anyway it's pushed now, someone please review it before I do something else stupid. gonna go get coffee."
+    },
+    {
+      "id": "c2",
+      "text": "honestly just delete the branch and start over. I tried to untangle it for an hour and got nowhere, then did it fresh in ten minutes. not worth it. sunk cost is a hell of a drug."
+    },
+    {
+      "id": "c3",
+      "text": "hey are we still on for thursday? I can do any time after 2 but earlier is better for me tbh. lmk what works and I'll send an invite. no worries if you need to move it again!"
+    },
+    {
+      "id": "c4",
+      "text": "lol this is exactly what happened to us last year. everyone said it was a config issue, spent two weeks on it, turned out the load balancer was just dropping half the traffic. classic. nobody checked the obvious thing first."
+    },
+    {
+      "id": "c5",
+      "text": "standup from me: finished the import script, it's running now. blocked on nothing. gonna pick up the flaky test next, that thing has been driving me nuts all week. shout if anyone needs a hand with anything."
+    },
+    {
+      "id": "c6",
+      "text": "I've been putting off writing this for months and honestly I'm still not sure what I think. but here goes. the short version is that I was wrong about most of it, and the long version is the rest of this post."
+    },
+    {
+      "id": "c7",
+      "text": "wait so it just silently does nothing?? that's so much worse than crashing. at least a crash tells you something is broken. this is going to bite someone at 3am and they'll have no idea why."
+    },
+    {
+      "id": "c8",
+      "text": "ok plan: I'll grab the drinks, you sort the food, and whoever gets there first saves a table. if it's rammed we can just go to the other place round the corner, it's never busy. see you at 7ish."
+    },
+    {
+      "id": "m1_link_tier0",
+      "text": "Here's the thing about caching: it's easy to add and hard to remove. You'll get a quick win on latency, and six months later nobody remembers which layer is authoritative. If you're going to cache, write down the invalidation rule first \u2014 it's the part everyone skips."
+    },
+    {
+      "id": "m2_link_tier0",
+      "text": "The service exposes a single endpoint for batch submission. Callers should retry on 5xx responses, though we'd suggest a backoff rather than a tight loop. Payloads over 10 MB are rejected. Note that ordering is not guaranteed across partitions, so don't rely on it."
+    },
+    {
+      "id": "m3_link_tier0",
+      "text": "Participants were asked to keep a short daily log. We didn't standardise the format, which in hindsight made the analysis harder than it needed to be. The main finding still held: people who logged in the morning reported more consistent entries than those who logged at night."
+    },
+    {
+      "id": "m4",
+      "text": "This release fixes a long-standing issue where timestamps were written in local time rather than UTC. If you have stored data from before this version, you will need to migrate it; the migration script is included but please back up first."
+    },
+    {
+      "id": "m5",
+      "text": "Install the package, then run the init command in your project root. It creates a config file with sensible defaults, so most people won't need to change anything. If you do, every option is documented in the reference section below."
+    },
+    {
+      "id": "m6",
+      "text": "We've decided to postpone the migration until after the quarter closes. The risk of doing it during the busiest period outweighs the benefit of finishing early, and the team would rather not be firefighting over the holidays. We'll revisit in January."
+    },
+    {
+      "id": "m7",
+      "text": "The incident began when a routine deployment removed a configuration key that a downstream service depended on. Recovery took forty minutes, most of which was spent identifying the cause rather than applying the fix. We have added a check to prevent a recurrence."
+    },
+    {
+      "id": "m8",
+      "text": "Thanks for getting in touch. I've had a look at your account and the charge you're asking about was for the annual plan, which renewed on the third. If that wasn't what you expected, I'm happy to refund it and move you to monthly instead."
+    },
+    {
+      "id": "m9",
+      "text": "This document describes the proposed format and the reasoning behind it. It is not a final specification, and several open questions are listed at the end. Feedback is welcome, particularly from teams who would have to implement the parsing side."
+    },
+    {
+      "id": "m10",
+      "text": "Before your first week, you'll need to set up access to the internal tools. Most of this is automated, but the VPN certificate has to be requested manually and can take a day or two, so it's worth doing that first."
+    },
+    {
+      "id": "m11",
+      "text": "The results were broadly consistent with what we expected, though the effect was smaller than the pilot suggested. We think the difference comes down to the change in recruitment, but we can't rule out that the pilot estimate was simply optimistic."
+    },
+    {
+      "id": "m12",
+      "text": "Performance degraded noticeably once the dataset exceeded about two million rows. Profiling showed the bottleneck was in serialisation rather than the query itself, which was not what we assumed going in. Switching the encoder recovered most of the loss."
+    },
+    {
+      "id": "m13",
+      "text": "Our recommendation is to adopt the second option. It requires more work upfront, but it avoids the dual-write period entirely, and the team has done something similar before. The first option is faster to start and considerably harder to finish."
+    },
+    {
+      "id": "m14",
+      "text": "Note that this endpoint is deprecated and will be removed in the next major version. It continues to work for now, but new integrations should use the replacement described below, which supports pagination and returns a stable ordering."
+    },
+    {
+      "id": "f1_link_tier0",
+      "text": "We report that mitochondrial respiratory capacity, assessed by extracellular flux analysis, was significantly attenuated in patient-derived fibroblasts relative to matched controls. The observed reduction was not attributable to differences in cell density, as confirmed by post-hoc normalisation to total protein content."
+    },
+    {
+      "id": "f2",
+      "text": "The present study examines the relationship between ambient temperature and enzymatic activity across a range of substrate concentrations. Measurements were conducted in triplicate under controlled conditions, and all reported values represent the arithmetic mean of independent determinations."
+    },
+    {
+      "id": "f3",
+      "text": "The Licensee shall not, without the prior written consent of the Licensor, assign, transfer, or otherwise dispose of any of its rights or obligations arising under this Agreement, whether in whole or in part, to any third party."
+    },
+    {
+      "id": "f4",
+      "text": "It is the policy of this institution that all research involving human participants shall be reviewed and approved by the relevant ethics committee prior to commencement. No exceptions shall be granted retrospectively, irrespective of the nature of the investigation."
+    },
+    {
+      "id": "f5",
+      "text": "Samples were homogenised in ice-cold buffer and centrifuged at 10,000 g for fifteen minutes at four degrees Celsius. The resulting supernatant was collected and stored at minus eighty degrees Celsius until analysis. Protein concentration was determined by the bicinchoninic acid method."
+    },
+    {
+      "id": "f6",
+      "text": "Holders of the affected devices are advised that continued operation may present a risk of injury. The manufacturer has initiated a voluntary recall, and affected units should be returned to the point of purchase. Compensation shall be determined in accordance with applicable regulations."
+    },
+    {
+      "id": "f7",
+      "text": "I write to acknowledge receipt of your correspondence dated the fourteenth of March and to confirm that the matter has been referred to the appropriate department for consideration. A substantive response will be provided in due course."
+    },
+    {
+      "id": "f8",
+      "text": "Conforming implementations shall accept all documents that satisfy the grammar defined in Section 4 and shall reject those that do not. Implementations may emit diagnostic messages, provided such messages do not alter the conformance status of the document under evaluation."
+    }
+  ],
+  "fitIterations": 60000
+}

@@ -1,0 +1,49 @@
+=== sampler validation: recovery on simulated data ===
+param            mean       2.5%      97.5%     Rhat      ESS
+mu            1.34606    1.15038    1.53587   1.0093      438
+s_item        0.36981    0.25036    0.56278   1.0004     3280
+s_fram        0.02300    0.01062    0.04625   1.0122      716
+s_null        0.01133    0.00524    0.01792   1.0108      418
+s_para        0.05328    0.04326    0.06585   1.0022     2485
+sigma_y       0.01770    0.01550    0.02023   1.0021     1382
+drift         0.00273    0.00171    0.00419   1.0019     2195
+G             0.99627    0.99238    0.99863   1.0017     2304
+
+truth: {'mu': 1.3, 's_item': 0.45, 's_fram': 0.02, 's_null': 0.015, 's_para': 0.055, 'sigma_y': 0.016}
+worst Rhat 1.0122 | min ESS 418
+  s_item    truth=0.4500 in [0.2504, 0.5628] -> COVERED
+  s_null    truth=0.0150 in [0.0052, 0.0179] -> COVERED
+  s_para    truth=0.0550 in [0.0433, 0.0659] -> COVERED
+  sigma_y   truth=0.0160 in [0.0155, 0.0202] -> COVERED
+recovery: PASS
+
+
+=== real data: N=224 items=14 framings=8 ===
+(main fit: 60000 iterations, 15000 burn-in, 4 chains)
+param            mean       2.5%      97.5%     Rhat      ESS
+mu            1.60961    1.32774    1.88811   1.0013     3921
+s_item        0.51970    0.35165    0.79053   1.0001    33416
+s_fram        0.00811    0.00030    0.02527   1.0006     4280
+s_null        0.03422    0.02618    0.04415   1.0000    26017
+s_para        0.05767    0.04638    0.07165   1.0001    41546
+sigma_y       0.02130    0.01869    0.02435   1.0001    57210
+drift         0.00218    0.00072    0.00405   1.0001    29352
+G             0.99314    0.98576    0.99760   1.0001    44513
+
+convergence gate (prereg section 6): max Rhat 1.0013 PASS | min ESS 3921 PASS
+
+posterior predictive (mean within-item sd):
+  observed   0.0408
+  replicated 5%=0.0424 50%=0.0495 95%=0.0590
+  ppp = 0.982
+
+=== per-item paraphrase spread (is a Normal g the right shape?) ===
+  sorted per-item paraphrase ranges:
+    0.030 0.030 0.050 0.070 0.070 0.080 0.080 0.090 0.090 0.090 0.100 0.190 0.370 0.370
+  median 0.0900  max 0.3700  max/median 4.1x
+
+=== prior sensitivity (prereg section 6) ===
+prior_scale     s_item    s_null    s_para         G
+         0.5   0.50232   0.03423   0.05785   0.99277
+         1.0   0.52065   0.03442   0.05769   0.99314
+         2.0   0.52933   0.03428   0.05762   0.99328

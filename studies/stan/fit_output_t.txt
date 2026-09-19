@@ -1,0 +1,24 @@
+data: studies/stan/data-fixed.csv  N=224 items=14 framings=8
+chains=4 iters=50000 burn=12500
+
+=== Student-t interaction ===
+param            mean       2.5%      97.5%     Rhat      ESS
+mu            1.61014    1.32994    1.88502   1.0011     3582
+s_item        0.51402    0.34852    0.78299   1.0000    33764
+s_fram        0.00691    0.00032    0.01896   1.0010     5541
+s_null        0.01358    0.00767    0.02116   1.0003     9679
+s_para        0.02458    0.01598    0.03570   1.0003    15359
+sigma_y       0.02089    0.01843    0.02376   1.0002    45818
+drift         0.00043    0.00000    0.00107   1.0002    16973
+G             0.99729    0.99442    0.99903   1.0001    34694
+nu            2.48063    2.03246    3.68452   1.0004    14410
+
+convergence gate: max Rhat 1.0011 PASS | min ESS 3582 PASS
+
+posterior predictive (mean within-item sd), Student-t:
+  observed   0.0408
+  replicated 5%=0.0308 50%=0.0394 95%=0.0609
+  ppp = 0.418
+
+nu: mean 2.48  95% CI [2.03, 3.68]
+  (low nu = heavy tails = item-specific paraphrase sensitivity; nu -> 30+ is effectively Normal)

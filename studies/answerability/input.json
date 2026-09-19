@@ -1,0 +1,41 @@
+{
+  "name": "answerability",
+  "repeats": 4,
+  "nullFramings": ["identity"],
+  "paraphrases": [],
+  "instructions": "Rate the formality of this writing. Consider word choice, sentence structure, contractions, colloquialisms, and register. Academic papers and legal text sit at the formal end; blog posts, tweets, and casual chat sit at the informal end. Technical documentation lands in between.",
+  "answerability": "Does this text contain enough connected writing to support a judgement about its formality? Answer yes only if there is genuine prose present — sentences with word choice, structure and register that can actually be assessed. Answer no if the text is too short to have a register, is not prose at all, or contains no writing to assess.",
+  "answerabilityCriteria": {
+    "true": "There is real prose here — at least one full sentence whose word choice, structure and register can be assessed.",
+    "false": "There is nothing to assess: a bare value, an identifier or URL, a single word or fragment, punctuation, encoded data, or a bare list with no sentence."
+  },
+  "criteria": [
+    "Casual — contractions, slang, first person, conversational asides, reads like talking to a friend",
+    "Relaxed — readable and approachable, some informality but structured, typical of good blog posts and dev docs",
+    "Professional — clean, structured prose, avoids slang but not stiff, typical of business writing and polished READMEs",
+    "Formal — precise diction, complex sentences, passive voice acceptable, typical of academic papers and official documentation"
+  ],
+  "items": [
+    { "id": "j01", "text": "ok so I finally got the thing working lol. turns out the whole problem was a missing comma, three hours of my life gone. anyway it's pushed now, someone please review it before I do something else stupid." },
+    { "id": "j02", "text": "Here's the thing about caching: it's easy to add and hard to remove. You'll get a quick win on latency, and six months later nobody remembers which layer is authoritative. Write down the invalidation rule first." },
+    { "id": "j03", "text": "The service exposes a single endpoint for batch submission. Callers should retry on 5xx responses, though we'd suggest a backoff rather than a tight loop. Payloads over 10 MB are rejected." },
+    { "id": "j04", "text": "We report that mitochondrial respiratory capacity, assessed by extracellular flux analysis, was significantly attenuated in patient-derived fibroblasts relative to matched controls, independent of cell density." },
+    { "id": "j05", "text": "The Licensee shall not, without the prior written consent of the Licensor, assign, transfer, or otherwise dispose of any of its rights or obligations arising under this Agreement, whether in whole or in part." },
+    { "id": "j06", "text": "honestly just delete the branch and start over. I tried to untangle it for an hour and got nowhere, then did it fresh in ten minutes. not worth it. sunk cost is a hell of a drug." },
+    { "id": "j07", "text": "This release fixes a long-standing issue where timestamps were written in local time rather than UTC. If you have stored data from before this version, you will need to migrate it before upgrading." },
+    { "id": "j08", "text": "Samples were homogenised in ice-cold buffer and centrifuged at 10,000 g for fifteen minutes at four degrees Celsius. The resulting supernatant was collected and stored until analysis." },
+    { "id": "j09", "text": "Thanks for getting in touch. I've had a look at your account and the charge you're asking about was for the annual plan, which renewed on the third. Happy to refund it if that wasn't expected." },
+    { "id": "j10", "text": "The incident began when a routine deployment removed a configuration key that a downstream service depended on. Recovery took forty minutes, most of it spent identifying the cause rather than fixing it." },
+
+    { "id": "u01", "text": "42" },
+    { "id": "u02", "text": "https://example.com/a/b?c=1&d=2" },
+    { "id": "u03", "text": "yes" },
+    { "id": "u04", "text": "..." },
+    { "id": "u05", "text": "3.14159 2.71828 1.61803 1.41421 0.57721" },
+    { "id": "u06", "text": "SGVsbG8gd29ybGQgdGhpcyBpcyBiYXNlNjQgZW5jb2RlZCB0ZXh0" },
+    { "id": "u07", "text": "a, b, c, d, e, f, g, h" },
+    { "id": "u08", "text": "[object Object]" },
+    { "id": "u09", "text": "TODO" },
+    { "id": "u10", "text": "-- 1 -- 2 -- 3 --" }
+  ]
+}

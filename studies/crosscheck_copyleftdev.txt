@@ -1,0 +1,12 @@
+All figures on the 0-1 PROBABILITY scale (per level), to match the article.
+
+tier0 identity (20 reps)     n_cells=  20  mean_sd=0.0055  max_sd=0.0166  mean_range=0.0180  max_range=0.0600
+tier0 identity, unsaturated  n_cells=  12  mean_sd=0.0091  max_sd=0.0166  mean_range=0.0300  max_range=0.0600
+tier12 identity (2 reps)     n_cells= 120  mean_sd=0.0021  max_sd=0.0200  mean_range=0.0043  max_range=0.0400
+tier12 null cohort (8)       n_cells= 120  mean_sd=0.0059  max_sd=0.0714  mean_range=0.0176  max_range=0.1900
+tier12 paraphrase cohort (8) n_cells= 120  mean_sd=0.0083  max_sd=0.1023  mean_range=0.0243  max_range=0.2900
+
+tier12 null cohort, mid only n_cells=  56  mean_sd=0.0124  max_sd=0.0714  mean_range=0.0370  max_range=0.1900
+tier12 para cohort, mid only n_cells=  56  mean_sd=0.0172  max_sd=0.1023  mean_range=0.0507  max_range=0.2900
+
+article reference: identity 0.042 · reorder 0.059 · paraphrase 0.073
