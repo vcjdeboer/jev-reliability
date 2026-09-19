@@ -149,10 +149,18 @@
 
   <h2>What we did</h2>
 
-  <p>We picked one question to study in depth — <em>how formal is this writing?</em>,
-    answered on a four-level scale — and wrote thirty short texts to ask it about. Eight
-    obviously casual, eight obviously formal, and fourteen deliberately in between, the
-    kind where two people would reasonably disagree.</p>
+  <p>The question we studied came from
+    <a href="https://github.com/vcjdeboer/jev-voice">jev-voice</a>, an extension we'd
+    already built on Jev. It profiles a piece of writing along six dimensions — formality,
+    authority, complexity, warmth, pace and conviction — and for each one returns not a
+    label but the full spread across the levels, so a text that sits 60% formal and 40%
+    conversational is reported as exactly that rather than rounded to the nearest verdict.
+    Having shipped it, we wanted to know how much those numbers could be trusted.</p>
+
+  <p>So we took one of its six questions — <em>how formal is this writing?</em>, answered
+    on a four-level scale — and wrote thirty short texts to ask it about. Eight obviously
+    casual, eight obviously formal, and fourteen deliberately in between, the kind where
+    two people would reasonably disagree.</p>
 
   <p>Then we asked Jev about every text under eight different versions of the same
     request, twice each. Four of those versions changed something that <em>cannot</em>
