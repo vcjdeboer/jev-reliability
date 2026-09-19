@@ -29,11 +29,6 @@ plus a decision:
 swamp extension pull @vcjdeboer/jev-reliability
 ```
 
-> **Not on the registry yet.** Until it is, clone this repo and copy
-> `jev_reliability.ts` into your own repo's `extensions/models/` and
-> `jev_reliability_report.ts` into `extensions/reports/` — swamp picks up local
-> extensions from those directories.
-
 You need a TypeSafe API key. Store it in a vault rather than an env var:
 
 ```sh

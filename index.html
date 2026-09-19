@@ -379,10 +379,6 @@ swamp model method run @vcjdeboer/jev-reliability check myquestion \
 
 swamp report get @vcjdeboer/jev-reliability-report --model myquestion</code></pre>
 
-  <p>It isn't on the swamp registry yet, so for now that first line means cloning the
-    repository and dropping the two source files into your own
-    <code>extensions/</code> directories.</p>
-
   <p>Two things it does deliberately. It hashes every request it sends and refuses to
     count two that turn out identical — which caught a mistake of ours, where a variant
     meant to reorder two fields left them in the order they were already in, so for 480
