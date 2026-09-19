@@ -84,6 +84,9 @@
     padding:.1em .35em;border-radius:4px;}
   pre code{background:none;padding:0;font-size:1em;}
 
+  ul{margin:1rem 0;padding-left:1.3rem;}
+  li{margin:.4rem 0;}
+
   .refs{margin-top:1rem;font-size:.95rem;color:var(--ink-soft);}
   .refs ol{padding-left:1.2rem;}
   .refs li{margin:.7rem 0;}
@@ -351,19 +354,23 @@ answerable: Does this text contain an actual message from someone, with
     question in a request you were already making. If you take one thing from this note,
     take that.</p>
 
-  <h2>Why there's an extension</h2>
+  <h2>What the extension does</h2>
 
-  <p>One of our four changes-that-can't-matter was supposed to reorder the fields of the
-    request. The code sorted them and then reversed them, which for a two-field object
-    returns the original order. For 480 calls it was quietly just sending the same request
-    again, and we had read that code several times without seeing it.</p>
+  <p>We packaged these checks as a swamp extension, so the same tests can be pointed at
+    the next question instead of rebuilt each time.</p>
 
-  <p>It produced a wrong conclusion — that irrelevant changes don't matter — which we
-    believed until the tooling caught it by hashing every request and noticing two were
-    identical. Fixing it doubled that middle row in the table above. That's the argument
-    for packaging this rather than doing it by hand: these errors survive reading. And
-    since sensitivity belongs to specific questions, it has to be redone per question
-    rather than looked up once per model.</p>
+  <p>You hand it a question and a set of example texts. It sends each text through the
+    variants described above — the same request repeated, versions with something changed
+    that shouldn't matter, versions with the wording changed — and, if you give it one,
+    the second answerability question alongside. Then it reports back:</p>
+
+  <ul>
+    <li>how often the decision changes, on repeats and on rewordings</li>
+    <li>which of your examples came back with the same number, and so can't be ordered</li>
+    <li>whether your threshold sits somewhere the answer crosses on its own</li>
+    <li>whether any example scores low on being answerable at all</li>
+    <li>how much of the movement comes from which source</li>
+  </ul>
 
   <pre><code>swamp extension pull @vcjdeboer/jev-reliability
 
@@ -372,13 +379,15 @@ swamp model method run @vcjdeboer/jev-reliability check myquestion \
 
 swamp report get @vcjdeboer/jev-reliability-report --model myquestion</code></pre>
 
-  <p>You give it a question and some examples. It reports how often the decision changes,
-    which items came back tied, whether your threshold sits somewhere unstable, whether
-    the text supports an answer at all, and where the movement is coming from. If the
-    model fit hasn't settled it says so rather than printing numbers.</p>
+  <p>Two things it does deliberately. It hashes every request it sends and refuses to
+    count two that turn out identical — which caught a mistake of ours, where a variant
+    meant to reorder two fields left them in the order they were already in, so for 480
+    calls it was quietly just sending the same request again. We'd read that code several
+    times without seeing it. And if the model fit hasn't settled, it says so instead of
+    printing the numbers.</p>
 
-  <p>None of this says whether Jev is <em>right</em> — only whether it's consistent.
-    That's a different question and it needs labelled examples.</p>
+  <p>None of it says whether Jev is <em>right</em> — only whether it's consistent. That's
+    a different question and it needs labelled examples.</p>
 
   <p>Code, raw data and the full write-up are in the
     repository.<sup><a href="#fn3" id="fnref3">3</a></sup></p>
