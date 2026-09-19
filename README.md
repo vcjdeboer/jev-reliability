@@ -29,6 +29,11 @@ plus a decision:
 swamp extension pull @vcjdeboer/jev-reliability
 ```
 
+> **Not on the registry yet.** Until it is, clone this repo and copy
+> `jev_reliability.ts` into your own repo's `extensions/models/` and
+> `jev_reliability_report.ts` into `extensions/reports/` — swamp picks up local
+> extensions from those directories.
+
 You need a TypeSafe API key. Store it in a vault rather than an env var:
 
 ```sh
@@ -174,6 +179,18 @@ deviation — including the ones that went against us.
 Bayesian hierarchical modeling framework for Seahorse extracellular flux oxygen
 consumption rate data analysis.* PLOS ONE 16(8): e0253926.
 <https://doi.org/10.1371/journal.pone.0253926>
+
+## Tests
+
+```sh
+deno test --allow-env jev_reliability_test.ts jev_reliability_report_test.ts
+```
+
+26 tests, no network. They cover answer interpretation for all three
+primitives, the API-key check refusing an unresolved vault expression, the
+no-op framing detection, the flip-rate reference decision, low-answerability
+reporting, and a regression test for a control that was once byte-identical to
+doing nothing.
 
 ## Licence
 

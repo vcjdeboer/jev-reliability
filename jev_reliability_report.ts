@@ -32,7 +32,8 @@ interface DataEntry {
   tags?: Record<string, string>;
 }
 
-interface Observation {
+/** One row of a replicate grid: a single call and everything it returned. */
+export interface Observation {
   item: string;
   framing: string;
   framingType: "null" | "para";
@@ -54,7 +55,8 @@ interface Observation {
   error?: string;
 }
 
-interface Grid {
+/** One recorded replicate grid, as written by the model's `check` method. */
+export interface Grid {
   run: string;
   collectedAt: string;
   model: string;
@@ -75,20 +77,23 @@ interface Grid {
  * The scalar under analysis. Grids written before the primitive
  * generalisation carry only `score`, so fall back to it.
  */
-const val = (o: Observation): number | null =>
+export const val = (o: Observation): number | null =>
   o.value !== undefined && o.value !== null ? o.value : o.score;
 
 function argmaxKey(p: Record<string, number> | null): string | null {
   if (!p) return null;
   let best: string | null = null, bv = -Infinity;
   for (const [k, v] of Object.entries(p)) {
-    if (v > bv) { bv = v; best = k; }
+    if (v > bv) {
+      bv = v;
+      best = k;
+    }
   }
   return best;
 }
 
 /** The discrete outcome — what the calling code would actually act on. */
-const decisionOf = (o: Observation): string | null =>
+export const decisionOf = (o: Observation): string | null =>
   o.decision !== undefined && o.decision !== null
     ? o.decision
     : argmaxKey(o.probabilities);
@@ -105,14 +110,10 @@ function pvar(v: number[]): number {
   return v.reduce((a, x) => a + (x - m) ** 2, 0) / v.length;
 }
 
-function svar(v: number[]): number {
-  if (v.length < 2) return 0;
-  const m = mean(v);
-  return v.reduce((a, x) => a + (x - m) ** 2, 0) / (v.length - 1);
-}
-
 const quantile = (sorted: number[], q: number) =>
-  sorted[Math.min(sorted.length - 1, Math.max(0, Math.floor(q * sorted.length)))];
+  sorted[
+    Math.min(sorted.length - 1, Math.max(0, Math.floor(q * sorted.length)))
+  ];
 
 /** Deterministic PRNG — a report must produce the same verdict every run. */
 function mulberry32(seed: number) {
@@ -276,7 +277,9 @@ function runChain(
     // Ridge-breaking joint shifts. (mu + d, a - d) has an identical
     // likelihood, so plain Gibbs crawls along that ridge and mu fails to mix.
     // Symmetric proposal, likelihood invariant -> prior ratio only.
-    for (const [vec, sVec] of [[a, sItem], [f, sFram]] as [number[], number][]) {
+    for (
+      const [vec, sVec] of [[a, sItem], [f, sFram]] as [number[], number][]
+    ) {
       const d = gauss() * 0.05;
       let logr = -0.5 * ((mu + d - 1.5) ** 2 - (mu - 1.5) ** 2);
       for (const v of vec) {
@@ -321,7 +324,13 @@ function runChain(
   return draws;
 }
 
-function splitRhat(chains: number[][]): number {
+/**
+ * Split-Rhat convergence diagnostic: compares variance between chain halves
+ * against variance within them. Values near 1 indicate agreement.
+ *
+ * @param chains Equal-length draws, one array per chain.
+ */
+export function splitRhat(chains: number[][]): number {
   const halves: number[][] = [];
   for (const c of chains) {
     const h = Math.floor(c.length / 2);
@@ -331,9 +340,11 @@ function splitRhat(chains: number[][]): number {
   const means = halves.map(mean);
   const grand = mean(means);
   const B = (n / (m - 1)) * means.reduce((a, x) => a + (x - grand) ** 2, 0);
-  const W = mean(halves.map((h, k) =>
-    h.reduce((a, x) => a + (x - means[k]) ** 2, 0) / (n - 1)
-  ));
+  const W = mean(
+    halves.map((h, k) =>
+      h.reduce((a, x) => a + (x - means[k]) ** 2, 0) / (n - 1)
+    ),
+  );
   if (W <= 0) return NaN;
   return Math.sqrt((((n - 1) / n) * W + B / n) / W);
 }
@@ -342,9 +353,11 @@ function ess(chains: number[][]): number {
   const m = chains.length, n = chains[0].length;
   const means = chains.map(mean);
   const grand = mean(means);
-  const W = mean(chains.map((c, k) =>
-    c.reduce((a, x) => a + (x - means[k]) ** 2, 0) / (n - 1)
-  ));
+  const W = mean(
+    chains.map((c, k) =>
+      c.reduce((a, x) => a + (x - means[k]) ** 2, 0) / (n - 1)
+    ),
+  );
   if (W <= 0) return NaN;
   const acov = (lag: number) =>
     mean(chains.map((c, k) => {
@@ -463,6 +476,7 @@ interface Analysis {
   thresholdFlappers: { item: string; lo: number; hi: number }[];
   answerability: {
     n: number;
+    lowAnswerable: { item: string; conf: number; ans: number }[];
     lowAnswerHighConf: { item: string; conf: number; ans: number }[];
     min: number;
     max: number;
@@ -487,7 +501,15 @@ function distinctFraction(m: Record<string, number>): number {
   return new Set(Object.values(m).map((x) => Math.round(x * 1e6))).size / n;
 }
 
-function analyse(grid: Grid, iters: number): Analysis {
+/**
+ * Turn one raw grid into the verdict: repeatability, framing sensitivity,
+ * resolution and ties, threshold stability, answerability, and a nested
+ * variance decomposition.
+ *
+ * @param grid The recorded grid.
+ * @param iters Sampler iterations for the variance model.
+ */
+export function analyse(grid: Grid, iters: number): Analysis {
   const all = grid.observations;
   const obs = all.filter((o) => val(o) !== null && !o.error);
   const failed = all.length - obs.length;
@@ -580,7 +602,10 @@ function analyse(grid: Grid, iters: number): Analysis {
       if (!o.probabilities) continue;
       let best = "", bv = -1;
       for (const [lvl, p] of Object.entries(o.probabilities)) {
-        if (p > bv) { bv = p; best = lvl; }
+        if (p > bv) {
+          bv = p;
+          best = lvl;
+        }
       }
       modes.add(best);
     }
@@ -612,15 +637,23 @@ function analyse(grid: Grid, iters: number): Analysis {
       if (o.confidence !== null) perItem.get(o.item)!.c.push(o.confidence);
     }
     const flags: { item: string; conf: number; ans: number }[] = [];
+    const low: { item: string; conf: number; ans: number }[] = [];
     const means_: number[] = [];
     for (const [k, v] of perItem) {
       const am = mean(v.a);
       means_.push(am);
       const cm = v.c.length ? mean(v.c) : 0;
-      if (am <= 0.5 && cm >= 0.8) flags.push({ item: k, conf: cm, ans: am });
+      // Low answerability matters on its own — you should not act on the
+      // score either way. High confidence on top of it is the dangerous
+      // case, because nothing downstream looks wrong.
+      if (am <= 0.5) {
+        low.push({ item: k, conf: cm, ans: am });
+        if (cm >= 0.8) flags.push({ item: k, conf: cm, ans: am });
+      }
     }
     answerability = {
       n: perItem.size,
+      lowAnswerable: low.sort((x, z) => x.ans - z.ans),
       lowAnswerHighConf: flags.sort((x, z) => x.ans - z.ans),
       min: Math.min(...means_),
       max: Math.max(...means_),
@@ -680,7 +713,12 @@ function analyse(grid: Grid, iters: number): Analysis {
       tally.set(d, (tally.get(d) ?? 0) + 1);
     }
     let modal: string | null = null, best = -1;
-    for (const [d, c] of tally) if (c > best) { best = c; modal = d; }
+    for (const [d, c] of tally) {
+      if (c > best) {
+        best = c;
+        modal = d;
+      }
+    }
     modalByItem.set(k, modal);
   }
   const flipCount = (pool: Observation[]) => {
@@ -753,11 +791,17 @@ function analyse(grid: Grid, iters: number): Analysis {
         `cut-off on IDENTICAL input — a fixed threshold will flip run to run.`,
     );
   }
+  if (answerability?.lowAnswerable.length) {
+    warnings.push(
+      `${answerability.lowAnswerable.length} item(s) score low on ` +
+        `answerability — the question does not really apply to them, so ` +
+        `their scores should not be acted on.`,
+    );
+  }
   if (answerability?.lowAnswerHighConf.length) {
     warnings.push(
-      `${answerability.lowAnswerHighConf.length} item(s) are rated CONFIDENTLY ` +
-        `but score low on answerability — the model is confidently judging ` +
-        `something with nothing to judge.`,
+      `${answerability.lowAnswerHighConf.length} of those are rated ` +
+        `CONFIDENTLY anyway — nothing downstream will look wrong.`,
     );
   }
   if (!answerability) {
@@ -783,8 +827,10 @@ function analyse(grid: Grid, iters: number): Analysis {
   if (nItemsTotal && distinctFraction(itemMeans) < 0.5) {
     warnings.push(
       `Your item set is degenerate for this question: only ` +
-        `${new Set(Object.values(itemMeans).map((m) => Math.round(m * 1e6)))
-          .size} distinct values across ${nItemsTotal} items. The verdict ` +
+        `${
+          new Set(Object.values(itemMeans).map((m) => Math.round(m * 1e6)))
+            .size
+        } distinct values across ${nItemsTotal} items. The verdict ` +
         `below is weak evidence — add items that land mid-scale.`,
     );
   }
@@ -947,8 +993,10 @@ function renderOne(a: Analysis): string {
     );
     L.push(
       `Indistinguishable pairs: **${a.indistinguishablePairs}/${a.totalPairs}**` +
-        ` (${(100 * a.indistinguishablePairs / Math.max(a.totalPairs, 1))
-          .toFixed(1)}%).`,
+        ` (${
+          (100 * a.indistinguishablePairs / Math.max(a.totalPairs, 1))
+            .toFixed(1)
+        }%).`,
     );
   }
   if (a.exactTies.length) {
@@ -982,11 +1030,25 @@ function renderOne(a: Analysis): string {
     L.push("");
     L.push(
       `Asked for ${a.answerability.n} items; range ` +
-        `${a.answerability.min.toFixed(3)} – ${a.answerability.max.toFixed(3)}.`,
+        `${a.answerability.min.toFixed(3)} – ${
+          a.answerability.max.toFixed(3)
+        }.`,
     );
+    if (a.answerability.lowAnswerable.length) {
+      L.push("");
+      L.push("**Low answerability — the question barely applies:**");
+      L.push("");
+      L.push("| item | confidence | answerable |");
+      L.push("|---|---|---|");
+      for (const x of a.answerability.lowAnswerable) {
+        L.push(
+          `| ${x.item} | ${x.conf.toFixed(3)} | ${x.ans.toFixed(3)} |`,
+        );
+      }
+    }
     if (a.answerability.lowAnswerHighConf.length) {
       L.push("");
-      L.push("**Confident but nothing to judge:**");
+      L.push("**Of those, rated confidently anyway:**");
       L.push("");
       L.push("| item | confidence | answerable |");
       L.push("|---|---|---|");
@@ -1066,6 +1128,11 @@ function renderOne(a: Analysis): string {
 
 const dec = new TextDecoder();
 
+/**
+ * Report type: renders the pre-flight verdict for every replicate grid
+ * recorded against a model, withholding the posterior when the fit has not
+ * converged.
+ */
 export const report = {
   name: "@vcjdeboer/jev-reliability-report",
   description:
@@ -1097,7 +1164,8 @@ export const report = {
 
     const all = await dataRepository.findAllForModel(modelType, modelId);
     const entries = all.filter(
-      (d) => d.tags?.specName === "replicate" || d.name.startsWith("replicate-"),
+      (d) =>
+        d.tags?.specName === "replicate" || d.name.startsWith("replicate-"),
     );
     logger?.info(`Found ${entries.length} replicate grids`, {
       names: entries.map((e) => e.name),
@@ -1121,8 +1189,10 @@ export const report = {
       // them. Those grids carry no information — skip rather than render an
       // empty section for them.
       if (!grid.observations?.length) continue;
-      if (entry.name.endsWith("-report-trigger") ||
-        grid.observations.length < 4) {
+      if (
+        entry.name.endsWith("-report-trigger") ||
+        grid.observations.length < 4
+      ) {
         logger?.info(`Skipping trigger grid ${grid.run}`);
         continue;
       }
@@ -1178,8 +1248,9 @@ export const report = {
           totalPairs: a.totalPairs,
           thresholdFlappers: a.thresholdFlappers.length,
           answerabilityAsked: a.answerability !== null,
-          confidentButUnanswerable:
-            a.answerability?.lowAnswerHighConf.length ?? 0,
+          lowAnswerable: a.answerability?.lowAnswerable.length ?? 0,
+          confidentButUnanswerable: a.answerability?.lowAnswerHighConf.length ??
+            0,
           fit: a.fit
             ? {
               converged: a.fit.converged,

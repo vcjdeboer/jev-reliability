@@ -51,7 +51,17 @@ const GlobalArgsSchema = z.object({
 
 type GlobalArgs = z.infer<typeof GlobalArgsSchema>;
 
-function resolveApiKey(ga: GlobalArgs): string {
+/**
+ * Resolve the TypeSafe API key, rejecting an unevaluated vault expression.
+ *
+ * An unresolved `${{ vault.get(...) }}` is a non-empty string, so a naive
+ * presence check passes while the vault is still empty.
+ *
+ * @param ga Global arguments for the model.
+ * @returns The resolved key.
+ * @throws If no key is set, or the value is still an expression.
+ */
+export function resolveApiKey(ga: GlobalArgs): string {
   const key = ga.apiKey ?? Deno.env.get(API_KEY_ENV);
   if (!key) {
     throw new Error(
@@ -88,14 +98,22 @@ function resolveApiKey(ga: GlobalArgs): string {
 
 type FramingType = "null" | "para";
 
-interface Framing {
+/** One version of a request: what it changes, and whether that can matter. */
+export interface Framing {
   id: string;
   type: FramingType;
   state?: (s: Record<string, unknown>) => Record<string, unknown>;
   instructions?: (i: string) => string;
 }
 
-const NULL_FRAMINGS: Framing[] = [
+/**
+ * Request changes that cannot alter a correct answer, so any movement they
+ * produce is noise rather than a different question being asked.
+ *
+ * Deliberately excludes reversing ordered criteria, which inverts a Score
+ * scale rather than leaving it alone.
+ */
+export const NULL_FRAMINGS: Framing[] = [
   { id: "identity", type: "null" },
   { id: "trailing_ws", type: "null", instructions: (i) => `${i}  ` },
   {
@@ -341,7 +359,10 @@ function argmax(p: Record<string, number> | undefined): string | null {
   if (!p) return null;
   let best: string | null = null, bv = -Infinity;
   for (const [k, v] of Object.entries(p)) {
-    if (v > bv) { bv = v; best = k; }
+    if (v > bv) {
+      bv = v;
+      best = k;
+    }
   }
   return best;
 }
@@ -351,14 +372,25 @@ interface Interpreted {
   decision: string | null;
 }
 
-function interpret(
+/**
+ * Reduce an answer to the two things every primitive provides: a scalar to
+ * analyse and the discrete outcome calling code would act on.
+ *
+ * @param a The raw answer object.
+ * @param type Which primitive was asked.
+ * @param threshold Cut-off used to turn a noul probability into yes/no.
+ */
+export function interpret(
   a: JevAnswer,
   type: GridArgs["questionType"],
   threshold: number,
 ): Interpreted {
   if (type === "noul") {
     const v = typeof a.noul === "number" ? a.noul : null;
-    return { value: v, decision: v === null ? null : v >= threshold ? "yes" : "no" };
+    return {
+      value: v,
+      decision: v === null ? null : v >= threshold ? "yes" : "no",
+    };
   }
   if (type === "choice") {
     const sel = a.choice ?? argmax(a.probabilities);
@@ -368,7 +400,13 @@ function interpret(
   return { value: a.score ?? null, decision: argmax(a.probabilities) };
 }
 
-function extractNoul(a: JevAnswer): number | null {
+/**
+ * Pull the probability-of-yes out of a Noul answer.
+ *
+ * @param a The raw answer object.
+ * @returns The probability, or null when no usable field is present.
+ */
+export function extractNoul(a: JevAnswer): number | null {
   if (typeof a.noul === "number") return a.noul;
   if (typeof a.score === "number") return a.score;
   const p = a.probabilities;
@@ -585,6 +623,10 @@ async function runGrid(args: GridArgs, context: any) {
 // Model
 // ---------------------------------------------------------------------------
 
+/**
+ * Model type: runs crossed item x framing x repeat grids against Jev and
+ * records every raw answer for the report to analyse.
+ */
 export const model = {
   type: "@vcjdeboer/jev-reliability",
   version: "2026.09.19.2",
